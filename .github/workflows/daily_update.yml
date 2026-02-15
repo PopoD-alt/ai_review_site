@@ -1,0 +1,49 @@
+name: Daily Tool Scrape & Deploy
+
+on:
+  schedule:
+    - cron: '0 8 * * *' # Runs at 8:00 AM UTC every day
+  workflow_dispatch: # Allows manual triggering
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install Dependencies
+        run: |
+          npm install axios cheerio
+
+      - name: Scrape New Tools
+        run: node scripts/daily_scrape.js
+        env:
+          # If we had an API key, it would go here.
+          # For now, the script will simulate finding 1-2 new tools to demonstrate functionality.
+          SIMULATE_NEW_TOOLS: "true"
+
+      - name: Build Site
+        run: node build.js
+
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name 'Alfred-Bot'
+          git config --global user.email 'alfred@openclaw.local'
+          git add scraped_data/tools.json
+          git commit -m "Automated: Added new AI tools" || echo "No changes to commit"
+          git push
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
