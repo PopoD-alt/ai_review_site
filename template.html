@@ -24,9 +24,9 @@
                 <div class="flex items-center space-x-4">
                     <a href="#" onclick="alert('Categories are available below in the filter section!')" class="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium hidden sm:block">Categories</a>
                     <!-- Google Form for Submit Tool -->
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfD_example_form_id/viewform" target="_blank" class="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Submit Tool</a>
+                    <a href="https://forms.gle/8SS2w4K9bWJKncwWA" target="_blank" class="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Submit Tool</a>
                     <!-- Google Form for Subscribe -->
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfD_example_subscribe_id/viewform" target="_blank" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md text-sm font-medium transition">Subscribe</a>
+                    <a href="https://forms.gle/cDJsRWLXV1dsRgcs7" target="_blank" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md text-sm font-medium transition">Subscribe</a>
                 </div>
             </div>
         </div>
@@ -61,12 +61,38 @@
         </div>
     </div>
 
-    <!-- Tools Grid -->
-    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full">
-        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3" id="toolsGrid">
-            <!-- TOOLS_PLACEHOLDER -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Main Content: Tools Grid -->
+        <div class="lg:col-span-2">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">Latest Tools</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="toolsGrid">
+                <!-- TOOLS_PLACEHOLDER -->
+            </div>
         </div>
-    </main>
+
+        <!-- Sidebar: News & LLM Leaderboard -->
+        <div class="space-y-8">
+            <!-- LLM Leaderboard -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-gray-100">
+                <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center">
+                    <span class="mr-2">🏆</span> Best Free LLMs
+                </h3>
+                <div class="space-y-4" id="llmLeaderboard">
+                    <!-- LLM_PLACEHOLDER -->
+                </div>
+            </div>
+
+            <!-- AI News -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-gray-100">
+                <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center">
+                    <span class="mr-2">📰</span> Latest AI News
+                </h3>
+                <div class="space-y-4" id="aiNews">
+                    <!-- NEWS_PLACEHOLDER -->
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer class="bg-gray-800 text-white py-12">

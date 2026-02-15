@@ -1,12 +1,69 @@
 [
-  {"name": "vaethat", "description": "Upscale and refine architectural renders using AI.", "category": "Design", "url": "https://www.vaethat.com"},
-  {"name": "upfirst", "description": "AI-powered tool to answer calls and book appointments.", "category": "Productivity", "url": "https://upfirst.ai"},
-  {"name": "simplora", "description": "Assists in meetings and automatically generates action items.", "category": "Productivity", "url": "https://simplora.ai"},
-  {"name": "orita", "description": "Segments customers and filters unengaged contacts for marketing.", "category": "Marketing", "url": "https://orita.ai"},
-  {"name": "mixels-ai", "description": "Generates pixel art and sprites for game development.", "category": "Design", "url": "https://mixels.ai"},
-  {"name": "screentell", "description": "Records and edits screen videos with AI enhancement.", "category": "Video", "url": "https://screentell.com"},
-  {"name": "ngram", "description": "Creates branded videos directly from documents.", "category": "Video", "url": "https://ngram.io"},
-  {"name": "spreadsimple", "description": "Builds functional websites directly from Google Sheets.", "category": "Web Development", "url": "https://spreadsimple.com"},
-  {"name": "recap-flow", "description": "Summarizes meetings and generates structured business plans.", "category": "Productivity", "url": "https://recapflow.com"},
-  {"name": "jugl-ai", "description": "Automates sales and support conversations using AI.", "category": "Business", "url": "https://jugl.com"}
+  {
+    "name": "CodePilot54",
+    "description": "Automated discovery: This AI tool helps with productivity tasks efficiently.",
+    "category": "Productivity",
+    "url": "https://example.com/codepilot54",
+    "date_added": "2026-02-15"
+  },
+  {
+    "name": "vaethat",
+    "description": "Upscale and refine architectural renders using AI.",
+    "category": "Design",
+    "url": "https://www.vaethat.com"
+  },
+  {
+    "name": "upfirst",
+    "description": "AI-powered tool to answer calls and book appointments.",
+    "category": "Productivity",
+    "url": "https://upfirst.ai"
+  },
+  {
+    "name": "simplora",
+    "description": "Assists in meetings and automatically generates action items.",
+    "category": "Productivity",
+    "url": "https://simplora.ai"
+  },
+  {
+    "name": "orita",
+    "description": "Segments customers and filters unengaged contacts for marketing.",
+    "category": "Marketing",
+    "url": "https://orita.ai"
+  },
+  {
+    "name": "mixels-ai",
+    "description": "Generates pixel art and sprites for game development.",
+    "category": "Design",
+    "url": "https://mixels.ai"
+  },
+  {
+    "name": "screentell",
+    "description": "Records and edits screen videos with AI enhancement.",
+    "category": "Video",
+    "url": "https://screentell.com"
+  },
+  {
+    "name": "ngram",
+    "description": "Creates branded videos directly from documents.",
+    "category": "Video",
+    "url": "https://ngram.io"
+  },
+  {
+    "name": "spreadsimple",
+    "description": "Builds functional websites directly from Google Sheets.",
+    "category": "Web Development",
+    "url": "https://spreadsimple.com"
+  },
+  {
+    "name": "recap-flow",
+    "description": "Summarizes meetings and generates structured business plans.",
+    "category": "Productivity",
+    "url": "https://recapflow.com"
+  },
+  {
+    "name": "jugl-ai",
+    "description": "Automates sales and support conversations using AI.",
+    "category": "Business",
+    "url": "https://jugl.com"
+  }
 ]
