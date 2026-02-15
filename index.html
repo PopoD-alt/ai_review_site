@@ -3,103 +3,483 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Automation Tools Review</title>
-    <meta name="description" content="Discover the best AI automation tools to boost your productivity.">
+    <title>AI Review Site - Discover Best AI Tools</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; background-color: #f9f9f9; }
-        header { text-align: center; margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid #eee; }
-        h1 { font-size: 2.5rem; color: #1a1a2e; margin-bottom: 10px; }
-        p { color: #666; }
-        .tool-card { background: white; border: 1px solid #e5e7eb; border-radius: 12px; padding: 24px; margin-bottom: 24px; transition: transform 0.2s, box-shadow 0.2s; position: relative; }
-        .tool-card:hover { transform: translateY(-3px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
-        .category { display: inline-block; background: #e0e7ff; color: #3730a3; padding: 4px 10px; border-radius: 9999px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; margin-bottom: 12px; }
-        .tool-name { font-size: 1.5rem; margin: 0 0 8px 0; color: #111; font-weight: 700; }
-        .description { color: #4b5563; font-size: 1rem; margin: 0 0 20px 0; }
-        .visit-btn { display: inline-block; background-color: #2563eb; color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; transition: background-color 0.2s; }
-        .visit-btn:hover { background-color: #1d4ed8; }
-        footer { text-align: center; margin-top: 60px; font-size: 0.875rem; color: #9ca3af; padding-bottom: 40px; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .tool-card:hover { transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
+        .gradient-text { background: linear-gradient(to right, #4f46e5, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     </style>
 </head>
-<body>
-    <header>
-        <h1>AI Automation Review 🤖</h1>
-        <p>Curated tools to supercharge your workflow. Updated Daily.</p>
-    </header>
-    <main id="tools-container">
+<body class="bg-gray-50 min-h-screen flex flex-col">
+
+    <!-- Navbar -->
+    <nav class="bg-white border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <span class="text-2xl font-bold text-gray-900">AI<span class="text-indigo-600">Review</span></span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="#" class="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Categories</a>
+                    <a href="#" class="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Submit Tool</a>
+                    <a href="#" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md text-sm font-medium transition">Subscribe</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="bg-white">
+        <div class="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl md:text-6xl">
+                Discover the Best <span class="gradient-text">AI Tools</span>
+            </h1>
+            <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-500">
+                Curated directory of the latest artificial intelligence tools to boost your productivity.
+            </p>
+            <div class="mt-8 flex justify-center">
+                <div class="relative w-full max-w-lg">
+                    <input type="text" id="searchInput" placeholder="Search tools (e.g., 'video', 'marketing')..." 
+                           class="block w-full rounded-full border-gray-300 pl-4 pr-12 py-3 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm border transition ease-in-out duration-150">
+                    <div class="absolute inset-y-0 right-0 flex items-center pr-3">
+                        <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Category Pills -->
+            <div class="mt-8 flex flex-wrap justify-center gap-2" id="categoryContainer">
+                <button class="category-filter px-4 py-2 rounded-full text-sm font-medium bg-indigo-600 text-white shadow-md hover:bg-indigo-700 transition" onclick="filterCategory('all')">All</button>
+                
+        <button class="category-filter px-4 py-2 rounded-full text-sm font-medium bg-white text-gray-700 border border-gray-200 hover:bg-gray-50 hover:border-indigo-300 transition shadow-sm" 
+                onclick="filterCategory('Business')" data-category="Business">
+            Business
+        </button>
+    
+        <button class="category-filter px-4 py-2 rounded-full text-sm font-medium bg-white text-gray-700 border border-gray-200 hover:bg-gray-50 hover:border-indigo-300 transition shadow-sm" 
+                onclick="filterCategory('Design')" data-category="Design">
+            Design
+        </button>
+    
+        <button class="category-filter px-4 py-2 rounded-full text-sm font-medium bg-white text-gray-700 border border-gray-200 hover:bg-gray-50 hover:border-indigo-300 transition shadow-sm" 
+                onclick="filterCategory('Marketing')" data-category="Marketing">
+            Marketing
+        </button>
+    
+        <button class="category-filter px-4 py-2 rounded-full text-sm font-medium bg-white text-gray-700 border border-gray-200 hover:bg-gray-50 hover:border-indigo-300 transition shadow-sm" 
+                onclick="filterCategory('Productivity')" data-category="Productivity">
+            Productivity
+        </button>
+    
+        <button class="category-filter px-4 py-2 rounded-full text-sm font-medium bg-white text-gray-700 border border-gray-200 hover:bg-gray-50 hover:border-indigo-300 transition shadow-sm" 
+                onclick="filterCategory('Video')" data-category="Video">
+            Video
+        </button>
+    
+        <button class="category-filter px-4 py-2 rounded-full text-sm font-medium bg-white text-gray-700 border border-gray-200 hover:bg-gray-50 hover:border-indigo-300 transition shadow-sm" 
+                onclick="filterCategory('Web Development')" data-category="Web Development">
+            Web Development
+        </button>
+    
+            </div>
+        </div>
+    </div>
+
+    <!-- Tools Grid -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full">
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3" id="toolsGrid">
+            
+        <div class="tool-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 p-6 flex flex-col justify-between" 
+             data-name="vaethat" data-category="Design" data-desc="Upscale and refine architectural renders using AI.">
+            
+            <div class="flex items-start justify-between mb-4">
+                <div class="flex items-center space-x-3">
+                    <div class="h-10 w-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold text-lg">
+                        V
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-900 leading-tight">vaethat</h3>
+                        <span class="text-xs text-gray-500 font-medium bg-gray-100 px-2 py-0.5 rounded-full">Design</span>
+                    </div>
+                </div>
+                <div class="flex items-center text-gray-400 text-xs space-x-1">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" /></svg>
+                    <span>98</span>
+                </div>
+            </div>
+
+            <p class="text-gray-600 text-sm mb-6 flex-grow leading-relaxed">
+                Upscale and refine architectural renders using AI.
+            </p>
+
+            <div class="mt-auto">
+                <a href="https://www.vaethat.com" target="_blank" rel="noopener noreferrer" 
+                   class="block w-full text-center bg-gray-900 hover:bg-indigo-600 text-white font-medium py-2.5 rounded-lg transition-colors duration-200">
+                    Visit Website
+                </a>
+            </div>
+        </div>
         
-        <div class="tool-card">
-            <span class="category">Design</span>
-            <h2 class="tool-name">vaethat</h2>
-            <p class="description">Upscale and refine architectural renders using AI.</p>
-            <a href="https://www.vaethat.com" target="_blank" class="visit-btn">Visit Website</a>
+        <div class="tool-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 p-6 flex flex-col justify-between" 
+             data-name="upfirst" data-category="Productivity" data-desc="AI-powered tool to answer calls and book appointments.">
+            
+            <div class="flex items-start justify-between mb-4">
+                <div class="flex items-center space-x-3">
+                    <div class="h-10 w-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold text-lg">
+                        U
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-900 leading-tight">upfirst</h3>
+                        <span class="text-xs text-gray-500 font-medium bg-gray-100 px-2 py-0.5 rounded-full">Productivity</span>
+                    </div>
+                </div>
+                <div class="flex items-center text-gray-400 text-xs space-x-1">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" /></svg>
+                    <span>523</span>
+                </div>
+            </div>
+
+            <p class="text-gray-600 text-sm mb-6 flex-grow leading-relaxed">
+                AI-powered tool to answer calls and book appointments.
+            </p>
+
+            <div class="mt-auto">
+                <a href="https://upfirst.ai" target="_blank" rel="noopener noreferrer" 
+                   class="block w-full text-center bg-gray-900 hover:bg-indigo-600 text-white font-medium py-2.5 rounded-lg transition-colors duration-200">
+                    Visit Website
+                </a>
+            </div>
         </div>
-    
-        <div class="tool-card">
-            <span class="category">Productivity</span>
-            <h2 class="tool-name">upfirst</h2>
-            <p class="description">AI-powered tool to answer calls and book appointments.</p>
-            <a href="https://upfirst.ai" target="_blank" class="visit-btn">Visit Website</a>
+        
+        <div class="tool-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 p-6 flex flex-col justify-between" 
+             data-name="simplora" data-category="Productivity" data-desc="Assists in meetings and automatically generates action items.">
+            
+            <div class="flex items-start justify-between mb-4">
+                <div class="flex items-center space-x-3">
+                    <div class="h-10 w-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold text-lg">
+                        S
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-900 leading-tight">simplora</h3>
+                        <span class="text-xs text-gray-500 font-medium bg-gray-100 px-2 py-0.5 rounded-full">Productivity</span>
+                    </div>
+                </div>
+                <div class="flex items-center text-gray-400 text-xs space-x-1">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" /></svg>
+                    <span>530</span>
+                </div>
+            </div>
+
+            <p class="text-gray-600 text-sm mb-6 flex-grow leading-relaxed">
+                Assists in meetings and automatically generates action items.
+            </p>
+
+            <div class="mt-auto">
+                <a href="https://simplora.ai" target="_blank" rel="noopener noreferrer" 
+                   class="block w-full text-center bg-gray-900 hover:bg-indigo-600 text-white font-medium py-2.5 rounded-lg transition-colors duration-200">
+                    Visit Website
+                </a>
+            </div>
         </div>
-    
-        <div class="tool-card">
-            <span class="category">Productivity</span>
-            <h2 class="tool-name">simplora</h2>
-            <p class="description">Assists in meetings and automatically generates action items.</p>
-            <a href="https://simplora.ai" target="_blank" class="visit-btn">Visit Website</a>
+        
+        <div class="tool-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 p-6 flex flex-col justify-between" 
+             data-name="orita" data-category="Marketing" data-desc="Segments customers and filters unengaged contacts for marketing.">
+            
+            <div class="flex items-start justify-between mb-4">
+                <div class="flex items-center space-x-3">
+                    <div class="h-10 w-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold text-lg">
+                        O
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-900 leading-tight">orita</h3>
+                        <span class="text-xs text-gray-500 font-medium bg-gray-100 px-2 py-0.5 rounded-full">Marketing</span>
+                    </div>
+                </div>
+                <div class="flex items-center text-gray-400 text-xs space-x-1">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" /></svg>
+                    <span>357</span>
+                </div>
+            </div>
+
+            <p class="text-gray-600 text-sm mb-6 flex-grow leading-relaxed">
+                Segments customers and filters unengaged contacts for marketing.
+            </p>
+
+            <div class="mt-auto">
+                <a href="https://orita.ai" target="_blank" rel="noopener noreferrer" 
+                   class="block w-full text-center bg-gray-900 hover:bg-indigo-600 text-white font-medium py-2.5 rounded-lg transition-colors duration-200">
+                    Visit Website
+                </a>
+            </div>
         </div>
-    
-        <div class="tool-card">
-            <span class="category">Marketing</span>
-            <h2 class="tool-name">orita</h2>
-            <p class="description">Segments customers and filters unengaged contacts for marketing.</p>
-            <a href="https://orita.ai" target="_blank" class="visit-btn">Visit Website</a>
+        
+        <div class="tool-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 p-6 flex flex-col justify-between" 
+             data-name="mixels-ai" data-category="Design" data-desc="Generates pixel art and sprites for game development.">
+            
+            <div class="flex items-start justify-between mb-4">
+                <div class="flex items-center space-x-3">
+                    <div class="h-10 w-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold text-lg">
+                        M
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-900 leading-tight">mixels-ai</h3>
+                        <span class="text-xs text-gray-500 font-medium bg-gray-100 px-2 py-0.5 rounded-full">Design</span>
+                    </div>
+                </div>
+                <div class="flex items-center text-gray-400 text-xs space-x-1">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" /></svg>
+                    <span>64</span>
+                </div>
+            </div>
+
+            <p class="text-gray-600 text-sm mb-6 flex-grow leading-relaxed">
+                Generates pixel art and sprites for game development.
+            </p>
+
+            <div class="mt-auto">
+                <a href="https://mixels.ai" target="_blank" rel="noopener noreferrer" 
+                   class="block w-full text-center bg-gray-900 hover:bg-indigo-600 text-white font-medium py-2.5 rounded-lg transition-colors duration-200">
+                    Visit Website
+                </a>
+            </div>
         </div>
-    
-        <div class="tool-card">
-            <span class="category">Design</span>
-            <h2 class="tool-name">mixels-ai</h2>
-            <p class="description">Generates pixel art and sprites for game development.</p>
-            <a href="https://mixels.ai" target="_blank" class="visit-btn">Visit Website</a>
+        
+        <div class="tool-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 p-6 flex flex-col justify-between" 
+             data-name="screentell" data-category="Video" data-desc="Records and edits screen videos with AI enhancement.">
+            
+            <div class="flex items-start justify-between mb-4">
+                <div class="flex items-center space-x-3">
+                    <div class="h-10 w-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold text-lg">
+                        S
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-900 leading-tight">screentell</h3>
+                        <span class="text-xs text-gray-500 font-medium bg-gray-100 px-2 py-0.5 rounded-full">Video</span>
+                    </div>
+                </div>
+                <div class="flex items-center text-gray-400 text-xs space-x-1">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" /></svg>
+                    <span>340</span>
+                </div>
+            </div>
+
+            <p class="text-gray-600 text-sm mb-6 flex-grow leading-relaxed">
+                Records and edits screen videos with AI enhancement.
+            </p>
+
+            <div class="mt-auto">
+                <a href="https://screentell.com" target="_blank" rel="noopener noreferrer" 
+                   class="block w-full text-center bg-gray-900 hover:bg-indigo-600 text-white font-medium py-2.5 rounded-lg transition-colors duration-200">
+                    Visit Website
+                </a>
+            </div>
         </div>
-    
-        <div class="tool-card">
-            <span class="category">Video</span>
-            <h2 class="tool-name">screentell</h2>
-            <p class="description">Records and edits screen videos with AI enhancement.</p>
-            <a href="https://screentell.com" target="_blank" class="visit-btn">Visit Website</a>
+        
+        <div class="tool-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 p-6 flex flex-col justify-between" 
+             data-name="ngram" data-category="Video" data-desc="Creates branded videos directly from documents.">
+            
+            <div class="flex items-start justify-between mb-4">
+                <div class="flex items-center space-x-3">
+                    <div class="h-10 w-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold text-lg">
+                        N
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-900 leading-tight">ngram</h3>
+                        <span class="text-xs text-gray-500 font-medium bg-gray-100 px-2 py-0.5 rounded-full">Video</span>
+                    </div>
+                </div>
+                <div class="flex items-center text-gray-400 text-xs space-x-1">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" /></svg>
+                    <span>297</span>
+                </div>
+            </div>
+
+            <p class="text-gray-600 text-sm mb-6 flex-grow leading-relaxed">
+                Creates branded videos directly from documents.
+            </p>
+
+            <div class="mt-auto">
+                <a href="https://ngram.io" target="_blank" rel="noopener noreferrer" 
+                   class="block w-full text-center bg-gray-900 hover:bg-indigo-600 text-white font-medium py-2.5 rounded-lg transition-colors duration-200">
+                    Visit Website
+                </a>
+            </div>
         </div>
-    
-        <div class="tool-card">
-            <span class="category">Video</span>
-            <h2 class="tool-name">ngram</h2>
-            <p class="description">Creates branded videos directly from documents.</p>
-            <a href="https://ngram.io" target="_blank" class="visit-btn">Visit Website</a>
+        
+        <div class="tool-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 p-6 flex flex-col justify-between" 
+             data-name="spreadsimple" data-category="Web Development" data-desc="Builds functional websites directly from Google Sheets.">
+            
+            <div class="flex items-start justify-between mb-4">
+                <div class="flex items-center space-x-3">
+                    <div class="h-10 w-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold text-lg">
+                        S
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-900 leading-tight">spreadsimple</h3>
+                        <span class="text-xs text-gray-500 font-medium bg-gray-100 px-2 py-0.5 rounded-full">Web Development</span>
+                    </div>
+                </div>
+                <div class="flex items-center text-gray-400 text-xs space-x-1">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" /></svg>
+                    <span>172</span>
+                </div>
+            </div>
+
+            <p class="text-gray-600 text-sm mb-6 flex-grow leading-relaxed">
+                Builds functional websites directly from Google Sheets.
+            </p>
+
+            <div class="mt-auto">
+                <a href="https://spreadsimple.com" target="_blank" rel="noopener noreferrer" 
+                   class="block w-full text-center bg-gray-900 hover:bg-indigo-600 text-white font-medium py-2.5 rounded-lg transition-colors duration-200">
+                    Visit Website
+                </a>
+            </div>
         </div>
-    
-        <div class="tool-card">
-            <span class="category">Web Development</span>
-            <h2 class="tool-name">spreadsimple</h2>
-            <p class="description">Builds functional websites directly from Google Sheets.</p>
-            <a href="https://spreadsimple.com" target="_blank" class="visit-btn">Visit Website</a>
+        
+        <div class="tool-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 p-6 flex flex-col justify-between" 
+             data-name="recap-flow" data-category="Productivity" data-desc="Summarizes meetings and generates structured business plans.">
+            
+            <div class="flex items-start justify-between mb-4">
+                <div class="flex items-center space-x-3">
+                    <div class="h-10 w-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold text-lg">
+                        R
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-900 leading-tight">recap-flow</h3>
+                        <span class="text-xs text-gray-500 font-medium bg-gray-100 px-2 py-0.5 rounded-full">Productivity</span>
+                    </div>
+                </div>
+                <div class="flex items-center text-gray-400 text-xs space-x-1">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" /></svg>
+                    <span>139</span>
+                </div>
+            </div>
+
+            <p class="text-gray-600 text-sm mb-6 flex-grow leading-relaxed">
+                Summarizes meetings and generates structured business plans.
+            </p>
+
+            <div class="mt-auto">
+                <a href="https://recapflow.com" target="_blank" rel="noopener noreferrer" 
+                   class="block w-full text-center bg-gray-900 hover:bg-indigo-600 text-white font-medium py-2.5 rounded-lg transition-colors duration-200">
+                    Visit Website
+                </a>
+            </div>
         </div>
-    
-        <div class="tool-card">
-            <span class="category">Productivity</span>
-            <h2 class="tool-name">recap-flow</h2>
-            <p class="description">Summarizes meetings and generates structured business plans.</p>
-            <a href="https://recapflow.com" target="_blank" class="visit-btn">Visit Website</a>
+        
+        <div class="tool-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 p-6 flex flex-col justify-between" 
+             data-name="jugl-ai" data-category="Business" data-desc="Automates sales and support conversations using AI.">
+            
+            <div class="flex items-start justify-between mb-4">
+                <div class="flex items-center space-x-3">
+                    <div class="h-10 w-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold text-lg">
+                        J
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-900 leading-tight">jugl-ai</h3>
+                        <span class="text-xs text-gray-500 font-medium bg-gray-100 px-2 py-0.5 rounded-full">Business</span>
+                    </div>
+                </div>
+                <div class="flex items-center text-gray-400 text-xs space-x-1">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" /></svg>
+                    <span>303</span>
+                </div>
+            </div>
+
+            <p class="text-gray-600 text-sm mb-6 flex-grow leading-relaxed">
+                Automates sales and support conversations using AI.
+            </p>
+
+            <div class="mt-auto">
+                <a href="https://jugl.com" target="_blank" rel="noopener noreferrer" 
+                   class="block w-full text-center bg-gray-900 hover:bg-indigo-600 text-white font-medium py-2.5 rounded-lg transition-colors duration-200">
+                    Visit Website
+                </a>
+            </div>
         </div>
-    
-        <div class="tool-card">
-            <span class="category">Business</span>
-            <h2 class="tool-name">jugl-ai</h2>
-            <p class="description">Automates sales and support conversations using AI.</p>
-            <a href="https://jugl.com" target="_blank" class="visit-btn">Visit Website</a>
+        
         </div>
-    
     </main>
-    <footer>
-        <p>&copy; 2026 AI Automation Review. Built by Alfred & Popo.</p>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+                <h3 class="text-lg font-semibold mb-4">About AI Review</h3>
+                <p class="text-gray-400 text-sm">Helping you find the perfect AI tools for your workflow. Updated daily.</p>
+            </div>
+            <div>
+                <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                <ul class="space-y-2 text-sm text-gray-400">
+                    <li><a href="#" class="hover:text-white">Submit a Tool</a></li>
+                    <li><a href="#" class="hover:text-white">Advertise</a></li>
+                    <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-lg font-semibold mb-4">Stay Updated</h3>
+                <form class="flex gap-2">
+                    <input type="email" placeholder="Enter your email" class="px-3 py-2 rounded-md bg-gray-700 text-white w-full focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    <button class="bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-md font-medium transition">Join</button>
+                </form>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 pt-8 border-t border-gray-700 text-center text-sm text-gray-500">
+            &copy; 2026 AI Review Site. All rights reserved.
+        </div>
     </footer>
-</body>
+
+    <script>
+        function filterCategory(category) {
+            const cards = document.querySelectorAll('.tool-card');
+            const buttons = document.querySelectorAll('.category-filter');
+            
+            // Highlight active button
+            buttons.forEach(btn => {
+                // Check if button text matches category, or if it's the "All" button
+                const btnCat = btn.getAttribute('data-category');
+                const isAll = (category === 'all' && btn.innerText.trim() === 'All');
+                
+                if (btnCat === category || isAll) {
+                    btn.classList.add('bg-indigo-600', 'text-white', 'border-transparent');
+                    btn.classList.remove('bg-white', 'text-gray-700', 'border-gray-200');
+                } else {
+                    btn.classList.remove('bg-indigo-600', 'text-white', 'border-transparent');
+                    btn.classList.add('bg-white', 'text-gray-700', 'border-gray-200');
+                }
+            });
+
+            cards.forEach(card => {
+                const cardCat = card.getAttribute('data-category');
+                if (category === 'all' || cardCat === category) {
+                    card.style.display = 'flex'; // Restore flex for layout
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+        
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const term = e.target.value.toLowerCase();
+            const cards = document.querySelectorAll('.tool-card');
+            
+            cards.forEach(card => {
+                const name = card.getAttribute('data-name').toLowerCase();
+                const desc = card.getAttribute('data-desc').toLowerCase();
+                
+                if (name.includes(term) || desc.includes(term)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    </script>
+    </body>
 </html>
