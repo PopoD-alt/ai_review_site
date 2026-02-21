@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Review Site - Discover Best AI Tools</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .tool-card:hover { transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
+        .gradient-text { background: linear-gradient(to right, #4f46e5, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col">
+
+    <!-- Navbar -->
+    <nav class="bg-white border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <span class="text-2xl font-bold text-gray-900">AI<span class="text-indigo-600">Review</span></span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="#" onclick="alert('Categories are available below in the filter section!')" class="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium hidden sm:block">Categories</a>
+                    <!-- Google Form for Submit Tool -->
+                    <a href="https://forms.gle/8SS2w4K9bWJKncwWA" target="_blank" class="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Submit Tool</a>
+                    <!-- Google Form for Subscribe -->
+                    <a href="https://forms.gle/cDJsRWLXV1dsRgcs7" target="_blank" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md text-sm font-medium transition">Subscribe</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="bg-white">
+        <div class="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl md:text-6xl">
+                Discover the Best <span class="gradient-text">AI Tools</span>
+            </h1>
+            <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-500">
+                Curated directory of the latest artificial intelligence tools to boost your productivity.
+            </p>
+            <div class="mt-8 flex justify-center">
+                <div class="relative w-full max-w-lg">
+                    <input type="text" id="searchInput" placeholder="Search tools (e.g., 'video', 'marketing')..." 
+                           class="block w-full rounded-full border-gray-300 pl-4 pr-12 py-3 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm border transition ease-in-out duration-150">
+                    <div class="absolute inset-y-0 right-0 flex items-center pr-3">
+                        <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Category Pills -->
+            <div class="mt-8 flex flex-wrap justify-center gap-2" id="categoryContainer">
+                <button class="category-filter px-4 py-2 rounded-full text-sm font-medium bg-indigo-600 text-white shadow-md hover:bg-indigo-700 transition" onclick="filterCategory('all')">All</button>
+                <!-- CATEGORIES_PLACEHOLDER -->
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Main Content: Tools Grid -->
+        <div class="lg:col-span-2">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">Latest Tools</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="toolsGrid">
+                <!-- TOOLS_PLACEHOLDER -->
+            </div>
+        </div>
+
+        <!-- Sidebar: News & LLM Leaderboard -->
+        <div class="space-y-8">
+            <!-- LLM Leaderboard -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-gray-100">
+                <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center">
+                    <span class="mr-2">🏆</span> Best Free LLMs
+                </h3>
+                <div class="space-y-4" id="llmLeaderboard">
+                    <!-- LLM_PLACEHOLDER -->
+                </div>
+            </div>
+
+            <!-- AI News -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-gray-100">
+                <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center">
+                    <span class="mr-2">📰</span> Latest AI News
+                </h3>
+                <div class="space-y-4" id="aiNews">
+                    <!-- NEWS_PLACEHOLDER -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+                <h3 class="text-lg font-semibold mb-4">About AI Review</h3>
+                <p class="text-gray-400 text-sm">Helping you find the perfect AI tools for your workflow. Updated daily via GitHub Actions.</p>
+            </div>
+            <div>
+                <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                <ul class="space-y-2 text-sm text-gray-400">
+                    <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSfD_example_form_id/viewform" target="_blank" class="hover:text-white">Submit a Tool</a></li>
+                    <li><a href="#" class="hover:text-white">Advertise</a></li>
+                    <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-lg font-semibold mb-4">Stay Updated</h3>
+                <form action="https://docs.google.com/forms/d/e/1FAIpQLSfD_example_subscribe_id/viewform" target="_blank" class="flex gap-2">
+                    <button class="bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-md font-medium transition w-full">Subscribe to Newsletter</button>
+                </form>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 pt-8 border-t border-gray-700 text-center text-sm text-gray-500">
+            &copy; 2026 AI Review Site. All rights reserved.
+        </div>
+    </footer>
+</body>
+</html>

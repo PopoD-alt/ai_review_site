@@ -1,0 +1,29 @@
+[
+  {
+    "name": "Llama 3 70B",
+    "provider": "Meta",
+    "price": "Free (Open Source)",
+    "performance": "High",
+    "context": "8k",
+    "description": "Best open-source model for general reasoning.",
+    "url": "https://llama.meta.com/"
+  },
+  {
+    "name": "Mistral Large",
+    "provider": "Mistral AI",
+    "price": "Free Tier Available",
+    "performance": "Very High",
+    "context": "32k",
+    "description": "Strong coding capabilities and multilingual support.",
+    "url": "https://mistral.ai/"
+  },
+  {
+    "name": "Gemini 1.5 Pro",
+    "provider": "Google",
+    "price": "Free (via AI Studio)",
+    "performance": "Elite",
+    "context": "1M+",
+    "description": "Massive context window for analyzing books/codebases.",
+    "url": "https://aistudio.google.com/"
+  }
+]
