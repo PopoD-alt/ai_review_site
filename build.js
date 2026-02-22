@@ -30,32 +30,35 @@ try {
         const likes = Math.floor(Math.random() * 500) + 50; 
         
         return `
-        <div class="tool-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 p-6 flex flex-col justify-between h-full" 
+        <div class="tool-card glass rounded-3xl overflow-hidden p-6 flex flex-col justify-between h-full group" 
              data-name="${tool.name}" data-category="${category}" data-desc="${tool.description}">
             
             <div class="flex items-start justify-between mb-4">
-                <div class="flex items-center space-x-3">
-                    <div class="h-10 w-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold text-lg flex-shrink-0">
+                <div class="flex items-center space-x-4">
+                    <div class="h-12 w-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 font-extrabold text-xl flex-shrink-0 group-hover:scale-110 transition-transform">
                         ${tool.name.charAt(0).toUpperCase()}
                     </div>
                     <div>
-                        <h3 class="text-lg font-bold text-gray-900 leading-tight">${tool.name}</h3>
-                        <span class="text-xs text-gray-500 font-medium bg-gray-100 px-2 py-0.5 rounded-full">${category}</span>
+                        <h3 class="text-lg font-bold text-white leading-tight">${tool.name}</h3>
+                        <span class="text-[10px] text-indigo-300 font-bold uppercase tracking-wider bg-indigo-500/10 px-2 py-0.5 rounded-md border border-indigo-500/10">${category}</span>
                     </div>
                 </div>
-                <div class="flex items-center text-gray-400 text-xs space-x-1 flex-shrink-0">
-                    <span>❤️ ${likes}</span>
+                <div class="flex items-center text-gray-500 text-xs font-bold space-x-1 flex-shrink-0">
+                    <span class="text-pink-500">✦</span> <span>${likes}</span>
                 </div>
             </div>
 
-            <p class="text-gray-600 text-sm mb-6 flex-grow leading-relaxed">
+            <p class="text-gray-400 text-sm mb-8 flex-grow leading-relaxed font-medium">
                 ${tool.description}
             </p>
 
-            <div class="mt-auto pt-4 border-t border-gray-100">
+            <div class="mt-auto">
                 <a href="${tool.url}" target="_blank" rel="noopener noreferrer" 
-                   class="block w-full text-center bg-gray-900 hover:bg-indigo-600 text-white font-medium py-2.5 rounded-lg transition-colors duration-200 text-sm">
-                    Visit Website
+                   class="flex items-center justify-center w-full bg-white/5 hover:bg-white/10 text-white font-bold py-3 rounded-2xl transition-all duration-300 text-sm border border-white/5 hover:border-white/10 group-hover:shadow-lg group-hover:shadow-white/5">
+                    Launch Tool
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
                 </a>
             </div>
         </div>
@@ -65,28 +68,39 @@ try {
     // 2. Generate News Cards
     const newsHtml = news.map(item => `
         <a href="${item.url}" target="_blank" class="block group">
-            <div class="border-l-4 border-indigo-500 pl-4 py-2 hover:bg-gray-50 transition-colors rounded-r-lg">
-                <h4 class="font-bold text-gray-900 group-hover:text-indigo-600 transition-colors">${item.title}</h4>
-                <p class="text-sm text-gray-600 mt-1 line-clamp-2">${item.summary}</p>
-                <span class="text-xs text-gray-400 mt-2 block">${item.date}</span>
+            <div class="relative pl-6 py-1">
+                <div class="absolute left-0 top-0 bottom-0 w-[2px] bg-white/5 group-hover:bg-indigo-500 transition-colors"></div>
+                <h4 class="font-bold text-gray-200 group-hover:text-white transition-colors text-sm leading-snug">${item.title}</h4>
+                <p class="text-xs text-gray-500 mt-2 line-clamp-2 font-medium">${item.summary}</p>
+                <div class="flex items-center mt-3 text-[10px] text-gray-600 font-bold uppercase tracking-widest">
+                    <span>${item.date}</span>
+                </div>
             </div>
         </a>
     `).join('');
 
     // 3. Generate LLM Leaderboard Cards
     const llmHtml = llms.map((model, index) => {
-        const rankEmoji = index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : `#${index + 1}`;
+        const rankColors = index === 0 ? 'text-yellow-400' : index === 1 ? 'text-slate-300' : index === 2 ? 'text-amber-600' : 'text-gray-500';
         return `
-        <div class="bg-gray-50 rounded-lg p-4 border border-gray-200">
-            <div class="flex justify-between items-start mb-2">
-                <h4 class="font-bold text-gray-900">${rankEmoji} ${model.name}</h4>
-                <span class="text-xs font-semibold px-2 py-1 bg-green-100 text-green-800 rounded-full">${model.performance}</span>
+        <div class="relative p-4 rounded-2xl bg-white/5 border border-white/5 hover:border-white/10 transition-colors">
+            <div class="flex justify-between items-start mb-3">
+                <h4 class="font-bold text-white flex items-center text-sm">
+                    <span class="mr-2 ${rankColors} font-black">0${index + 1}</span> 
+                    ${model.name}
+                </h4>
+                <span class="text-[10px] font-black px-2 py-0.5 bg-indigo-500/20 text-indigo-300 rounded-md border border-indigo-500/10 uppercase tracking-tighter">${model.performance}</span>
             </div>
-            <p class="text-xs text-gray-500 mb-2">by ${model.provider} • ${model.context} Context</p>
-            <p class="text-sm text-gray-700 mb-3">${model.description}</p>
-            <div class="flex justify-between items-center text-xs">
-                <span class="font-mono bg-gray-200 px-1 rounded">${model.price}</span>
-                <a href="${model.url}" target="_blank" class="text-indigo-600 hover:underline">Try it →</a>
+            <p class="text-[10px] text-gray-500 mb-3 font-bold uppercase tracking-wider">by ${model.provider} • ${model.context} ctx</p>
+            <p class="text-xs text-gray-400 mb-4 font-medium leading-relaxed">${model.description}</p>
+            <div class="flex justify-between items-center text-[10px]">
+                <span class="font-black text-white bg-white/10 px-2 py-1 rounded-md uppercase tracking-widest">${model.price}</span>
+                <a href="${model.url}" target="_blank" class="text-indigo-400 hover:text-indigo-300 font-black flex items-center uppercase tracking-widest">
+                    Access 
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                </a>
             </div>
         </div>
         `;
@@ -95,7 +109,7 @@ try {
     // 4. Generate Categories HTML
     const uniqueCategories = [...new Set(tools.map(t => t.category || 'Uncategorized'))].sort();
     const categoriesHtml = uniqueCategories.map(cat => `
-        <button class="category-filter px-4 py-2 rounded-full text-sm font-medium bg-white text-gray-700 border border-gray-200 hover:bg-gray-50 hover:border-indigo-300 transition shadow-sm" 
+        <button class="category-filter px-6 py-2 rounded-full text-xs font-bold text-gray-400 border border-white/5 hover:border-white/20 hover:text-white transition-all backdrop-blur-sm" 
                 onclick="filterCategory('${cat}')" data-category="${cat}">
             ${cat}
         </button>
@@ -117,14 +131,14 @@ try {
             
             buttons.forEach(btn => {
                 const btnCat = btn.getAttribute('data-category');
-                const isAll = (category === 'all' && btn.innerText.trim() === 'All');
+                const isAll = (category === 'all' && btn.innerText.trim() === 'All Universe');
                 
                 if (btnCat === category || isAll) {
-                    btn.classList.add('bg-indigo-600', 'text-white', 'border-transparent');
-                    btn.classList.remove('bg-white', 'text-gray-700', 'border-gray-200');
+                    btn.classList.add('bg-indigo-600', 'text-white', 'border-indigo-400/20');
+                    btn.classList.remove('text-gray-400', 'border-white/5');
                 } else {
-                    btn.classList.remove('bg-indigo-600', 'text-white', 'border-transparent');
-                    btn.classList.add('bg-white', 'text-gray-700', 'border-gray-200');
+                    btn.classList.remove('bg-indigo-600', 'text-white', 'border-indigo-400/20');
+                    btn.classList.add('text-gray-400', 'border-white/5');
                 }
             });
 

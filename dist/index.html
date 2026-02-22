@@ -6,761 +6,969 @@
     <title>AI Review Site - Discover Best AI Tools</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-        body { font-family: 'Inter', sans-serif; }
-        .tool-card:hover { transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
-        .gradient-text { background: linear-gradient(to right, #4f46e5, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+        
+        :root {
+            --bg-deep: #0f172a;
+            --bg-card: rgba(30, 41, 59, 0.7);
+            --accent-indigo: #6366f1;
+            --accent-pink: #ec4899;
+        }
+
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: var(--bg-deep);
+            color: #f1f5f9;
+        }
+
+        .glass {
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .hero-gradient {
+            background: radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 100% 0%, rgba(236, 72, 153, 0.1) 0%, transparent 40%);
+        }
+
+        .gradient-text { 
+            background: linear-gradient(135deg, #818cf8 0%, #f472b6 100%); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+        }
+
+        .nav-glass {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .tool-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(99, 102, 241, 0.4);
+            box-shadow: 0 12px 40px -10px rgba(0, 0, 0, 0.5);
+        }
+
+        .sticky-sidebar {
+            position: sticky;
+            top: 5rem;
+            max-height: calc(100vh - 6rem);
+            overflow-y: auto;
+        }
+
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .sticky-sidebar::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .sticky-sidebar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
     </style>
 </head>
-<body class="bg-gray-50 min-h-screen flex flex-col">
+<body class="min-h-screen flex flex-col hero-gradient">
 
     <!-- Navbar -->
-    <nav class="bg-white border-b border-gray-200 sticky top-0 z-50">
+    <nav class="nav-glass sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
                 <div class="flex items-center">
-                    <span class="text-2xl font-bold text-gray-900">AI<span class="text-indigo-600">Review</span></span>
+                    <span class="text-2xl font-extrabold tracking-tight text-white italic">AI<span class="text-indigo-400">Review</span></span>
                 </div>
-                <div class="flex items-center space-x-4">
-                    <a href="#" onclick="alert('Categories are available below in the filter section!')" class="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium hidden sm:block">Categories</a>
-                    <!-- Google Form for Submit Tool -->
-                    <a href="https://forms.gle/8SS2w4K9bWJKncwWA" target="_blank" class="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Submit Tool</a>
-                    <!-- Google Form for Subscribe -->
-                    <a href="https://forms.gle/cDJsRWLXV1dsRgcs7" target="_blank" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md text-sm font-medium transition">Subscribe</a>
+                <div class="flex items-center space-x-6">
+                    <a href="https://forms.gle/8SS2w4K9bWJKncwWA" target="_blank" class="text-gray-300 hover:text-white transition-colors text-sm font-semibold uppercase tracking-wider">Submit Tool</a>
+                    <a href="https://forms.gle/cDJsRWLXV1dsRgcs7" target="_blank" class="bg-indigo-600 hover:bg-indigo-500 text-white px-5 py-2 rounded-full text-sm font-bold transition-all shadow-lg shadow-indigo-500/20">Subscribe</a>
                 </div>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <div class="bg-white">
-        <div class="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8 text-center">
-            <h1 class="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl md:text-6xl">
-                Discover the Best <span class="gradient-text">AI Tools</span>
+    <header class="relative pt-20 pb-16 px-4">
+        <div class="max-w-7xl mx-auto text-center">
+            <h1 class="text-5xl font-extrabold tracking-tighter text-white sm:text-6xl md:text-7xl mb-6">
+                Redefine Your Workflow with <span class="gradient-text">Next-Gen AI</span>
             </h1>
-            <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-500">
-                Curated directory of the latest artificial intelligence tools to boost your productivity.
+            <p class="mt-4 max-w-2xl mx-auto text-lg text-gray-400 font-medium">
+                The most sophisticated directory of artificial intelligence tools, curated for the modern era.
             </p>
-            <div class="mt-8 flex justify-center">
-                <div class="relative w-full max-w-lg">
-                    <input type="text" id="searchInput" placeholder="Search tools (e.g., 'video', 'marketing')..." 
-                           class="block w-full rounded-full border-gray-300 pl-4 pr-12 py-3 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm border transition ease-in-out duration-150">
-                    <div class="absolute inset-y-0 right-0 flex items-center pr-3">
-                        <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                            <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
-                        </svg>
+            <div class="mt-10 flex justify-center">
+                <div class="relative w-full max-w-xl group">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-indigo-500 to-pink-500 rounded-full blur opacity-25 group-focus-within:opacity-50 transition duration-1000"></div>
+                    <div class="relative">
+                        <input type="text" id="searchInput" placeholder="Search the future of AI tools..." 
+                               class="block w-full rounded-full bg-slate-900/80 border-0 pl-6 pr-14 py-4 text-white placeholder-gray-500 focus:ring-2 focus:ring-indigo-500 sm:text-base backdrop-blur-sm">
+                        <div class="absolute inset-y-0 right-0 flex items-center pr-5">
+                            <svg class="h-6 w-6 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            </svg>
+                        </div>
                     </div>
                 </div>
             </div>
             
             <!-- Category Pills -->
-            <div class="mt-8 flex flex-wrap justify-center gap-2" id="categoryContainer">
-                <button class="category-filter px-4 py-2 rounded-full text-sm font-medium bg-indigo-600 text-white shadow-md hover:bg-indigo-700 transition" onclick="filterCategory('all')">All</button>
+            <div class="mt-10 flex flex-wrap justify-center gap-3" id="categoryContainer">
+                <button class="category-filter px-6 py-2 rounded-full text-sm font-bold bg-indigo-600 text-white shadow-lg shadow-indigo-500/30 hover:bg-indigo-500 transition-all border border-indigo-400/20" onclick="filterCategory('all')">All Universe</button>
                 
-        <button class="category-filter px-4 py-2 rounded-full text-sm font-medium bg-white text-gray-700 border border-gray-200 hover:bg-gray-50 hover:border-indigo-300 transition shadow-sm" 
+        <button class="category-filter px-6 py-2 rounded-full text-xs font-bold text-gray-400 border border-white/5 hover:border-white/20 hover:text-white transition-all backdrop-blur-sm" 
                 onclick="filterCategory('Business')" data-category="Business">
             Business
         </button>
     
-        <button class="category-filter px-4 py-2 rounded-full text-sm font-medium bg-white text-gray-700 border border-gray-200 hover:bg-gray-50 hover:border-indigo-300 transition shadow-sm" 
+        <button class="category-filter px-6 py-2 rounded-full text-xs font-bold text-gray-400 border border-white/5 hover:border-white/20 hover:text-white transition-all backdrop-blur-sm" 
                 onclick="filterCategory('Code')" data-category="Code">
             Code
         </button>
     
-        <button class="category-filter px-4 py-2 rounded-full text-sm font-medium bg-white text-gray-700 border border-gray-200 hover:bg-gray-50 hover:border-indigo-300 transition shadow-sm" 
+        <button class="category-filter px-6 py-2 rounded-full text-xs font-bold text-gray-400 border border-white/5 hover:border-white/20 hover:text-white transition-all backdrop-blur-sm" 
                 onclick="filterCategory('Design')" data-category="Design">
             Design
         </button>
     
-        <button class="category-filter px-4 py-2 rounded-full text-sm font-medium bg-white text-gray-700 border border-gray-200 hover:bg-gray-50 hover:border-indigo-300 transition shadow-sm" 
+        <button class="category-filter px-6 py-2 rounded-full text-xs font-bold text-gray-400 border border-white/5 hover:border-white/20 hover:text-white transition-all backdrop-blur-sm" 
                 onclick="filterCategory('Marketing')" data-category="Marketing">
             Marketing
         </button>
     
-        <button class="category-filter px-4 py-2 rounded-full text-sm font-medium bg-white text-gray-700 border border-gray-200 hover:bg-gray-50 hover:border-indigo-300 transition shadow-sm" 
+        <button class="category-filter px-6 py-2 rounded-full text-xs font-bold text-gray-400 border border-white/5 hover:border-white/20 hover:text-white transition-all backdrop-blur-sm" 
                 onclick="filterCategory('Productivity')" data-category="Productivity">
             Productivity
         </button>
     
-        <button class="category-filter px-4 py-2 rounded-full text-sm font-medium bg-white text-gray-700 border border-gray-200 hover:bg-gray-50 hover:border-indigo-300 transition shadow-sm" 
+        <button class="category-filter px-6 py-2 rounded-full text-xs font-bold text-gray-400 border border-white/5 hover:border-white/20 hover:text-white transition-all backdrop-blur-sm" 
                 onclick="filterCategory('Video')" data-category="Video">
             Video
         </button>
     
-        <button class="category-filter px-4 py-2 rounded-full text-sm font-medium bg-white text-gray-700 border border-gray-200 hover:bg-gray-50 hover:border-indigo-300 transition shadow-sm" 
+        <button class="category-filter px-6 py-2 rounded-full text-xs font-bold text-gray-400 border border-white/5 hover:border-white/20 hover:text-white transition-all backdrop-blur-sm" 
                 onclick="filterCategory('Web Development')" data-category="Web Development">
             Web Development
         </button>
     
-        <button class="category-filter px-4 py-2 rounded-full text-sm font-medium bg-white text-gray-700 border border-gray-200 hover:bg-gray-50 hover:border-indigo-300 transition shadow-sm" 
+        <button class="category-filter px-6 py-2 rounded-full text-xs font-bold text-gray-400 border border-white/5 hover:border-white/20 hover:text-white transition-all backdrop-blur-sm" 
                 onclick="filterCategory('Writing')" data-category="Writing">
             Writing
         </button>
     
             </div>
         </div>
-    </div>
+    </header>
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <!-- Main Content: Tools Grid -->
-        <div class="lg:col-span-2">
-            <h2 class="text-2xl font-bold text-gray-900 mb-6">Latest Tools</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="toolsGrid">
-                
-        <div class="tool-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 p-6 flex flex-col justify-between h-full" 
-             data-name="Sora" data-category="Video" data-desc="OpenAI's text-to-video model that creates highly realistic scenes from text instructions.">
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            <!-- Main Content: Tools Grid -->
+            <div class="lg:col-span-8">
+                <div class="flex items-center justify-between mb-8">
+                    <h2 class="text-2xl font-bold text-white flex items-center">
+                        <span class="w-2 h-8 bg-indigo-500 rounded-full mr-3"></span>
+                        Featured Intelligence
+                    </h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="toolsGrid">
+                    
+        <div class="tool-card glass rounded-3xl overflow-hidden p-6 flex flex-col justify-between h-full group" 
+             data-name="NovaFlow25" data-category="Design" data-desc="Automated discovery: This AI tool helps with design tasks efficiently.">
             
             <div class="flex items-start justify-between mb-4">
-                <div class="flex items-center space-x-3">
-                    <div class="h-10 w-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold text-lg flex-shrink-0">
-                        S
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-bold text-gray-900 leading-tight">Sora</h3>
-                        <span class="text-xs text-gray-500 font-medium bg-gray-100 px-2 py-0.5 rounded-full">Video</span>
-                    </div>
-                </div>
-                <div class="flex items-center text-gray-400 text-xs space-x-1 flex-shrink-0">
-                    <span>❤️ 178</span>
-                </div>
-            </div>
-
-            <p class="text-gray-600 text-sm mb-6 flex-grow leading-relaxed">
-                OpenAI's text-to-video model that creates highly realistic scenes from text instructions.
-            </p>
-
-            <div class="mt-auto pt-4 border-t border-gray-100">
-                <a href="https://openai.com/sora" target="_blank" rel="noopener noreferrer" 
-                   class="block w-full text-center bg-gray-900 hover:bg-indigo-600 text-white font-medium py-2.5 rounded-lg transition-colors duration-200 text-sm">
-                    Visit Website
-                </a>
-            </div>
-        </div>
-        
-        <div class="tool-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 p-6 flex flex-col justify-between h-full" 
-             data-name="Veo" data-category="Video" data-desc="Google DeepMind's most capable generative video model for creators and filmmakers.">
-            
-            <div class="flex items-start justify-between mb-4">
-                <div class="flex items-center space-x-3">
-                    <div class="h-10 w-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold text-lg flex-shrink-0">
-                        V
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-bold text-gray-900 leading-tight">Veo</h3>
-                        <span class="text-xs text-gray-500 font-medium bg-gray-100 px-2 py-0.5 rounded-full">Video</span>
-                    </div>
-                </div>
-                <div class="flex items-center text-gray-400 text-xs space-x-1 flex-shrink-0">
-                    <span>❤️ 331</span>
-                </div>
-            </div>
-
-            <p class="text-gray-600 text-sm mb-6 flex-grow leading-relaxed">
-                Google DeepMind's most capable generative video model for creators and filmmakers.
-            </p>
-
-            <div class="mt-auto pt-4 border-t border-gray-100">
-                <a href="https://deepmind.google/technologies/veo/" target="_blank" rel="noopener noreferrer" 
-                   class="block w-full text-center bg-gray-900 hover:bg-indigo-600 text-white font-medium py-2.5 rounded-lg transition-colors duration-200 text-sm">
-                    Visit Website
-                </a>
-            </div>
-        </div>
-        
-        <div class="tool-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 p-6 flex flex-col justify-between h-full" 
-             data-name="PixelMinds42" data-category="Marketing" data-desc="Automated discovery: This AI tool helps with marketing tasks efficiently.">
-            
-            <div class="flex items-start justify-between mb-4">
-                <div class="flex items-center space-x-3">
-                    <div class="h-10 w-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold text-lg flex-shrink-0">
-                        P
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-bold text-gray-900 leading-tight">PixelMinds42</h3>
-                        <span class="text-xs text-gray-500 font-medium bg-gray-100 px-2 py-0.5 rounded-full">Marketing</span>
-                    </div>
-                </div>
-                <div class="flex items-center text-gray-400 text-xs space-x-1 flex-shrink-0">
-                    <span>❤️ 258</span>
-                </div>
-            </div>
-
-            <p class="text-gray-600 text-sm mb-6 flex-grow leading-relaxed">
-                Automated discovery: This AI tool helps with marketing tasks efficiently.
-            </p>
-
-            <div class="mt-auto pt-4 border-t border-gray-100">
-                <a href="https://example.com/pixelminds42" target="_blank" rel="noopener noreferrer" 
-                   class="block w-full text-center bg-gray-900 hover:bg-indigo-600 text-white font-medium py-2.5 rounded-lg transition-colors duration-200 text-sm">
-                    Visit Website
-                </a>
-            </div>
-        </div>
-        
-        <div class="tool-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 p-6 flex flex-col justify-between h-full" 
-             data-name="PixelMinds15" data-category="Code" data-desc="Automated discovery: This AI tool helps with code tasks efficiently.">
-            
-            <div class="flex items-start justify-between mb-4">
-                <div class="flex items-center space-x-3">
-                    <div class="h-10 w-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold text-lg flex-shrink-0">
-                        P
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-bold text-gray-900 leading-tight">PixelMinds15</h3>
-                        <span class="text-xs text-gray-500 font-medium bg-gray-100 px-2 py-0.5 rounded-full">Code</span>
-                    </div>
-                </div>
-                <div class="flex items-center text-gray-400 text-xs space-x-1 flex-shrink-0">
-                    <span>❤️ 68</span>
-                </div>
-            </div>
-
-            <p class="text-gray-600 text-sm mb-6 flex-grow leading-relaxed">
-                Automated discovery: This AI tool helps with code tasks efficiently.
-            </p>
-
-            <div class="mt-auto pt-4 border-t border-gray-100">
-                <a href="https://example.com/pixelminds15" target="_blank" rel="noopener noreferrer" 
-                   class="block w-full text-center bg-gray-900 hover:bg-indigo-600 text-white font-medium py-2.5 rounded-lg transition-colors duration-200 text-sm">
-                    Visit Website
-                </a>
-            </div>
-        </div>
-        
-        <div class="tool-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 p-6 flex flex-col justify-between h-full" 
-             data-name="Synthetix84" data-category="Writing" data-desc="Automated discovery: This AI tool helps with writing tasks efficiently.">
-            
-            <div class="flex items-start justify-between mb-4">
-                <div class="flex items-center space-x-3">
-                    <div class="h-10 w-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold text-lg flex-shrink-0">
-                        S
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-bold text-gray-900 leading-tight">Synthetix84</h3>
-                        <span class="text-xs text-gray-500 font-medium bg-gray-100 px-2 py-0.5 rounded-full">Writing</span>
-                    </div>
-                </div>
-                <div class="flex items-center text-gray-400 text-xs space-x-1 flex-shrink-0">
-                    <span>❤️ 102</span>
-                </div>
-            </div>
-
-            <p class="text-gray-600 text-sm mb-6 flex-grow leading-relaxed">
-                Automated discovery: This AI tool helps with writing tasks efficiently.
-            </p>
-
-            <div class="mt-auto pt-4 border-t border-gray-100">
-                <a href="https://example.com/synthetix84" target="_blank" rel="noopener noreferrer" 
-                   class="block w-full text-center bg-gray-900 hover:bg-indigo-600 text-white font-medium py-2.5 rounded-lg transition-colors duration-200 text-sm">
-                    Visit Website
-                </a>
-            </div>
-        </div>
-        
-        <div class="tool-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 p-6 flex flex-col justify-between h-full" 
-             data-name="PixelMinds14" data-category="Productivity" data-desc="Automated discovery: This AI tool helps with productivity tasks efficiently.">
-            
-            <div class="flex items-start justify-between mb-4">
-                <div class="flex items-center space-x-3">
-                    <div class="h-10 w-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold text-lg flex-shrink-0">
-                        P
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-bold text-gray-900 leading-tight">PixelMinds14</h3>
-                        <span class="text-xs text-gray-500 font-medium bg-gray-100 px-2 py-0.5 rounded-full">Productivity</span>
-                    </div>
-                </div>
-                <div class="flex items-center text-gray-400 text-xs space-x-1 flex-shrink-0">
-                    <span>❤️ 54</span>
-                </div>
-            </div>
-
-            <p class="text-gray-600 text-sm mb-6 flex-grow leading-relaxed">
-                Automated discovery: This AI tool helps with productivity tasks efficiently.
-            </p>
-
-            <div class="mt-auto pt-4 border-t border-gray-100">
-                <a href="https://example.com/pixelminds14" target="_blank" rel="noopener noreferrer" 
-                   class="block w-full text-center bg-gray-900 hover:bg-indigo-600 text-white font-medium py-2.5 rounded-lg transition-colors duration-200 text-sm">
-                    Visit Website
-                </a>
-            </div>
-        </div>
-        
-        <div class="tool-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 p-6 flex flex-col justify-between h-full" 
-             data-name="PixelMinds59" data-category="Writing" data-desc="Automated discovery: This AI tool helps with writing tasks efficiently.">
-            
-            <div class="flex items-start justify-between mb-4">
-                <div class="flex items-center space-x-3">
-                    <div class="h-10 w-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold text-lg flex-shrink-0">
-                        P
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-bold text-gray-900 leading-tight">PixelMinds59</h3>
-                        <span class="text-xs text-gray-500 font-medium bg-gray-100 px-2 py-0.5 rounded-full">Writing</span>
-                    </div>
-                </div>
-                <div class="flex items-center text-gray-400 text-xs space-x-1 flex-shrink-0">
-                    <span>❤️ 479</span>
-                </div>
-            </div>
-
-            <p class="text-gray-600 text-sm mb-6 flex-grow leading-relaxed">
-                Automated discovery: This AI tool helps with writing tasks efficiently.
-            </p>
-
-            <div class="mt-auto pt-4 border-t border-gray-100">
-                <a href="https://example.com/pixelminds59" target="_blank" rel="noopener noreferrer" 
-                   class="block w-full text-center bg-gray-900 hover:bg-indigo-600 text-white font-medium py-2.5 rounded-lg transition-colors duration-200 text-sm">
-                    Visit Website
-                </a>
-            </div>
-        </div>
-        
-        <div class="tool-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 p-6 flex flex-col justify-between h-full" 
-             data-name="CodePilot54" data-category="Productivity" data-desc="Automated discovery: This AI tool helps with productivity tasks efficiently.">
-            
-            <div class="flex items-start justify-between mb-4">
-                <div class="flex items-center space-x-3">
-                    <div class="h-10 w-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold text-lg flex-shrink-0">
-                        C
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-bold text-gray-900 leading-tight">CodePilot54</h3>
-                        <span class="text-xs text-gray-500 font-medium bg-gray-100 px-2 py-0.5 rounded-full">Productivity</span>
-                    </div>
-                </div>
-                <div class="flex items-center text-gray-400 text-xs space-x-1 flex-shrink-0">
-                    <span>❤️ 506</span>
-                </div>
-            </div>
-
-            <p class="text-gray-600 text-sm mb-6 flex-grow leading-relaxed">
-                Automated discovery: This AI tool helps with productivity tasks efficiently.
-            </p>
-
-            <div class="mt-auto pt-4 border-t border-gray-100">
-                <a href="https://example.com/codepilot54" target="_blank" rel="noopener noreferrer" 
-                   class="block w-full text-center bg-gray-900 hover:bg-indigo-600 text-white font-medium py-2.5 rounded-lg transition-colors duration-200 text-sm">
-                    Visit Website
-                </a>
-            </div>
-        </div>
-        
-        <div class="tool-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 p-6 flex flex-col justify-between h-full" 
-             data-name="vaethat" data-category="Design" data-desc="Upscale and refine architectural renders using AI.">
-            
-            <div class="flex items-start justify-between mb-4">
-                <div class="flex items-center space-x-3">
-                    <div class="h-10 w-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold text-lg flex-shrink-0">
-                        V
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-bold text-gray-900 leading-tight">vaethat</h3>
-                        <span class="text-xs text-gray-500 font-medium bg-gray-100 px-2 py-0.5 rounded-full">Design</span>
-                    </div>
-                </div>
-                <div class="flex items-center text-gray-400 text-xs space-x-1 flex-shrink-0">
-                    <span>❤️ 430</span>
-                </div>
-            </div>
-
-            <p class="text-gray-600 text-sm mb-6 flex-grow leading-relaxed">
-                Upscale and refine architectural renders using AI.
-            </p>
-
-            <div class="mt-auto pt-4 border-t border-gray-100">
-                <a href="https://www.vaethat.com" target="_blank" rel="noopener noreferrer" 
-                   class="block w-full text-center bg-gray-900 hover:bg-indigo-600 text-white font-medium py-2.5 rounded-lg transition-colors duration-200 text-sm">
-                    Visit Website
-                </a>
-            </div>
-        </div>
-        
-        <div class="tool-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 p-6 flex flex-col justify-between h-full" 
-             data-name="upfirst" data-category="Productivity" data-desc="AI-powered tool to answer calls and book appointments.">
-            
-            <div class="flex items-start justify-between mb-4">
-                <div class="flex items-center space-x-3">
-                    <div class="h-10 w-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold text-lg flex-shrink-0">
-                        U
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-bold text-gray-900 leading-tight">upfirst</h3>
-                        <span class="text-xs text-gray-500 font-medium bg-gray-100 px-2 py-0.5 rounded-full">Productivity</span>
-                    </div>
-                </div>
-                <div class="flex items-center text-gray-400 text-xs space-x-1 flex-shrink-0">
-                    <span>❤️ 141</span>
-                </div>
-            </div>
-
-            <p class="text-gray-600 text-sm mb-6 flex-grow leading-relaxed">
-                AI-powered tool to answer calls and book appointments.
-            </p>
-
-            <div class="mt-auto pt-4 border-t border-gray-100">
-                <a href="https://upfirst.ai" target="_blank" rel="noopener noreferrer" 
-                   class="block w-full text-center bg-gray-900 hover:bg-indigo-600 text-white font-medium py-2.5 rounded-lg transition-colors duration-200 text-sm">
-                    Visit Website
-                </a>
-            </div>
-        </div>
-        
-        <div class="tool-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 p-6 flex flex-col justify-between h-full" 
-             data-name="simplora" data-category="Productivity" data-desc="Assists in meetings and automatically generates action items.">
-            
-            <div class="flex items-start justify-between mb-4">
-                <div class="flex items-center space-x-3">
-                    <div class="h-10 w-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold text-lg flex-shrink-0">
-                        S
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-bold text-gray-900 leading-tight">simplora</h3>
-                        <span class="text-xs text-gray-500 font-medium bg-gray-100 px-2 py-0.5 rounded-full">Productivity</span>
-                    </div>
-                </div>
-                <div class="flex items-center text-gray-400 text-xs space-x-1 flex-shrink-0">
-                    <span>❤️ 327</span>
-                </div>
-            </div>
-
-            <p class="text-gray-600 text-sm mb-6 flex-grow leading-relaxed">
-                Assists in meetings and automatically generates action items.
-            </p>
-
-            <div class="mt-auto pt-4 border-t border-gray-100">
-                <a href="https://simplora.ai" target="_blank" rel="noopener noreferrer" 
-                   class="block w-full text-center bg-gray-900 hover:bg-indigo-600 text-white font-medium py-2.5 rounded-lg transition-colors duration-200 text-sm">
-                    Visit Website
-                </a>
-            </div>
-        </div>
-        
-        <div class="tool-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 p-6 flex flex-col justify-between h-full" 
-             data-name="orita" data-category="Marketing" data-desc="Segments customers and filters unengaged contacts for marketing.">
-            
-            <div class="flex items-start justify-between mb-4">
-                <div class="flex items-center space-x-3">
-                    <div class="h-10 w-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold text-lg flex-shrink-0">
-                        O
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-bold text-gray-900 leading-tight">orita</h3>
-                        <span class="text-xs text-gray-500 font-medium bg-gray-100 px-2 py-0.5 rounded-full">Marketing</span>
-                    </div>
-                </div>
-                <div class="flex items-center text-gray-400 text-xs space-x-1 flex-shrink-0">
-                    <span>❤️ 447</span>
-                </div>
-            </div>
-
-            <p class="text-gray-600 text-sm mb-6 flex-grow leading-relaxed">
-                Segments customers and filters unengaged contacts for marketing.
-            </p>
-
-            <div class="mt-auto pt-4 border-t border-gray-100">
-                <a href="https://orita.ai" target="_blank" rel="noopener noreferrer" 
-                   class="block w-full text-center bg-gray-900 hover:bg-indigo-600 text-white font-medium py-2.5 rounded-lg transition-colors duration-200 text-sm">
-                    Visit Website
-                </a>
-            </div>
-        </div>
-        
-        <div class="tool-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 p-6 flex flex-col justify-between h-full" 
-             data-name="mixels-ai" data-category="Design" data-desc="Generates pixel art and sprites for game development.">
-            
-            <div class="flex items-start justify-between mb-4">
-                <div class="flex items-center space-x-3">
-                    <div class="h-10 w-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold text-lg flex-shrink-0">
-                        M
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-bold text-gray-900 leading-tight">mixels-ai</h3>
-                        <span class="text-xs text-gray-500 font-medium bg-gray-100 px-2 py-0.5 rounded-full">Design</span>
-                    </div>
-                </div>
-                <div class="flex items-center text-gray-400 text-xs space-x-1 flex-shrink-0">
-                    <span>❤️ 151</span>
-                </div>
-            </div>
-
-            <p class="text-gray-600 text-sm mb-6 flex-grow leading-relaxed">
-                Generates pixel art and sprites for game development.
-            </p>
-
-            <div class="mt-auto pt-4 border-t border-gray-100">
-                <a href="https://mixels.ai" target="_blank" rel="noopener noreferrer" 
-                   class="block w-full text-center bg-gray-900 hover:bg-indigo-600 text-white font-medium py-2.5 rounded-lg transition-colors duration-200 text-sm">
-                    Visit Website
-                </a>
-            </div>
-        </div>
-        
-        <div class="tool-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 p-6 flex flex-col justify-between h-full" 
-             data-name="screentell" data-category="Video" data-desc="Records and edits screen videos with AI enhancement.">
-            
-            <div class="flex items-start justify-between mb-4">
-                <div class="flex items-center space-x-3">
-                    <div class="h-10 w-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold text-lg flex-shrink-0">
-                        S
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-bold text-gray-900 leading-tight">screentell</h3>
-                        <span class="text-xs text-gray-500 font-medium bg-gray-100 px-2 py-0.5 rounded-full">Video</span>
-                    </div>
-                </div>
-                <div class="flex items-center text-gray-400 text-xs space-x-1 flex-shrink-0">
-                    <span>❤️ 388</span>
-                </div>
-            </div>
-
-            <p class="text-gray-600 text-sm mb-6 flex-grow leading-relaxed">
-                Records and edits screen videos with AI enhancement.
-            </p>
-
-            <div class="mt-auto pt-4 border-t border-gray-100">
-                <a href="https://screentell.com" target="_blank" rel="noopener noreferrer" 
-                   class="block w-full text-center bg-gray-900 hover:bg-indigo-600 text-white font-medium py-2.5 rounded-lg transition-colors duration-200 text-sm">
-                    Visit Website
-                </a>
-            </div>
-        </div>
-        
-        <div class="tool-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 p-6 flex flex-col justify-between h-full" 
-             data-name="ngram" data-category="Video" data-desc="Creates branded videos directly from documents.">
-            
-            <div class="flex items-start justify-between mb-4">
-                <div class="flex items-center space-x-3">
-                    <div class="h-10 w-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold text-lg flex-shrink-0">
+                <div class="flex items-center space-x-4">
+                    <div class="h-12 w-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 font-extrabold text-xl flex-shrink-0 group-hover:scale-110 transition-transform">
                         N
                     </div>
                     <div>
-                        <h3 class="text-lg font-bold text-gray-900 leading-tight">ngram</h3>
-                        <span class="text-xs text-gray-500 font-medium bg-gray-100 px-2 py-0.5 rounded-full">Video</span>
+                        <h3 class="text-lg font-bold text-white leading-tight">NovaFlow25</h3>
+                        <span class="text-[10px] text-indigo-300 font-bold uppercase tracking-wider bg-indigo-500/10 px-2 py-0.5 rounded-md border border-indigo-500/10">Design</span>
                     </div>
                 </div>
-                <div class="flex items-center text-gray-400 text-xs space-x-1 flex-shrink-0">
-                    <span>❤️ 446</span>
+                <div class="flex items-center text-gray-500 text-xs font-bold space-x-1 flex-shrink-0">
+                    <span class="text-pink-500">✦</span> <span>495</span>
                 </div>
             </div>
 
-            <p class="text-gray-600 text-sm mb-6 flex-grow leading-relaxed">
-                Creates branded videos directly from documents.
+            <p class="text-gray-400 text-sm mb-8 flex-grow leading-relaxed font-medium">
+                Automated discovery: This AI tool helps with design tasks efficiently.
             </p>
 
-            <div class="mt-auto pt-4 border-t border-gray-100">
-                <a href="https://ngram.io" target="_blank" rel="noopener noreferrer" 
-                   class="block w-full text-center bg-gray-900 hover:bg-indigo-600 text-white font-medium py-2.5 rounded-lg transition-colors duration-200 text-sm">
-                    Visit Website
+            <div class="mt-auto">
+                <a href="https://example.com/novaflow25" target="_blank" rel="noopener noreferrer" 
+                   class="flex items-center justify-center w-full bg-white/5 hover:bg-white/10 text-white font-bold py-3 rounded-2xl transition-all duration-300 text-sm border border-white/5 hover:border-white/10 group-hover:shadow-lg group-hover:shadow-white/5">
+                    Launch Tool
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
                 </a>
             </div>
         </div>
         
-        <div class="tool-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 p-6 flex flex-col justify-between h-full" 
-             data-name="spreadsimple" data-category="Web Development" data-desc="Builds functional websites directly from Google Sheets.">
+        <div class="tool-card glass rounded-3xl overflow-hidden p-6 flex flex-col justify-between h-full group" 
+             data-name="Sora" data-category="Video" data-desc="OpenAI's text-to-video model that creates highly realistic scenes from text instructions.">
             
             <div class="flex items-start justify-between mb-4">
-                <div class="flex items-center space-x-3">
-                    <div class="h-10 w-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold text-lg flex-shrink-0">
+                <div class="flex items-center space-x-4">
+                    <div class="h-12 w-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 font-extrabold text-xl flex-shrink-0 group-hover:scale-110 transition-transform">
                         S
                     </div>
                     <div>
-                        <h3 class="text-lg font-bold text-gray-900 leading-tight">spreadsimple</h3>
-                        <span class="text-xs text-gray-500 font-medium bg-gray-100 px-2 py-0.5 rounded-full">Web Development</span>
+                        <h3 class="text-lg font-bold text-white leading-tight">Sora</h3>
+                        <span class="text-[10px] text-indigo-300 font-bold uppercase tracking-wider bg-indigo-500/10 px-2 py-0.5 rounded-md border border-indigo-500/10">Video</span>
                     </div>
                 </div>
-                <div class="flex items-center text-gray-400 text-xs space-x-1 flex-shrink-0">
-                    <span>❤️ 268</span>
+                <div class="flex items-center text-gray-500 text-xs font-bold space-x-1 flex-shrink-0">
+                    <span class="text-pink-500">✦</span> <span>422</span>
                 </div>
             </div>
 
-            <p class="text-gray-600 text-sm mb-6 flex-grow leading-relaxed">
+            <p class="text-gray-400 text-sm mb-8 flex-grow leading-relaxed font-medium">
+                OpenAI's text-to-video model that creates highly realistic scenes from text instructions.
+            </p>
+
+            <div class="mt-auto">
+                <a href="https://openai.com/sora" target="_blank" rel="noopener noreferrer" 
+                   class="flex items-center justify-center w-full bg-white/5 hover:bg-white/10 text-white font-bold py-3 rounded-2xl transition-all duration-300 text-sm border border-white/5 hover:border-white/10 group-hover:shadow-lg group-hover:shadow-white/5">
+                    Launch Tool
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+        
+        <div class="tool-card glass rounded-3xl overflow-hidden p-6 flex flex-col justify-between h-full group" 
+             data-name="Veo" data-category="Video" data-desc="Google DeepMind's most capable generative video model for creators and filmmakers.">
+            
+            <div class="flex items-start justify-between mb-4">
+                <div class="flex items-center space-x-4">
+                    <div class="h-12 w-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 font-extrabold text-xl flex-shrink-0 group-hover:scale-110 transition-transform">
+                        V
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-white leading-tight">Veo</h3>
+                        <span class="text-[10px] text-indigo-300 font-bold uppercase tracking-wider bg-indigo-500/10 px-2 py-0.5 rounded-md border border-indigo-500/10">Video</span>
+                    </div>
+                </div>
+                <div class="flex items-center text-gray-500 text-xs font-bold space-x-1 flex-shrink-0">
+                    <span class="text-pink-500">✦</span> <span>184</span>
+                </div>
+            </div>
+
+            <p class="text-gray-400 text-sm mb-8 flex-grow leading-relaxed font-medium">
+                Google DeepMind's most capable generative video model for creators and filmmakers.
+            </p>
+
+            <div class="mt-auto">
+                <a href="https://deepmind.google/technologies/veo/" target="_blank" rel="noopener noreferrer" 
+                   class="flex items-center justify-center w-full bg-white/5 hover:bg-white/10 text-white font-bold py-3 rounded-2xl transition-all duration-300 text-sm border border-white/5 hover:border-white/10 group-hover:shadow-lg group-hover:shadow-white/5">
+                    Launch Tool
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+        
+        <div class="tool-card glass rounded-3xl overflow-hidden p-6 flex flex-col justify-between h-full group" 
+             data-name="PixelMinds42" data-category="Marketing" data-desc="Automated discovery: This AI tool helps with marketing tasks efficiently.">
+            
+            <div class="flex items-start justify-between mb-4">
+                <div class="flex items-center space-x-4">
+                    <div class="h-12 w-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 font-extrabold text-xl flex-shrink-0 group-hover:scale-110 transition-transform">
+                        P
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-white leading-tight">PixelMinds42</h3>
+                        <span class="text-[10px] text-indigo-300 font-bold uppercase tracking-wider bg-indigo-500/10 px-2 py-0.5 rounded-md border border-indigo-500/10">Marketing</span>
+                    </div>
+                </div>
+                <div class="flex items-center text-gray-500 text-xs font-bold space-x-1 flex-shrink-0">
+                    <span class="text-pink-500">✦</span> <span>429</span>
+                </div>
+            </div>
+
+            <p class="text-gray-400 text-sm mb-8 flex-grow leading-relaxed font-medium">
+                Automated discovery: This AI tool helps with marketing tasks efficiently.
+            </p>
+
+            <div class="mt-auto">
+                <a href="https://example.com/pixelminds42" target="_blank" rel="noopener noreferrer" 
+                   class="flex items-center justify-center w-full bg-white/5 hover:bg-white/10 text-white font-bold py-3 rounded-2xl transition-all duration-300 text-sm border border-white/5 hover:border-white/10 group-hover:shadow-lg group-hover:shadow-white/5">
+                    Launch Tool
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+        
+        <div class="tool-card glass rounded-3xl overflow-hidden p-6 flex flex-col justify-between h-full group" 
+             data-name="PixelMinds15" data-category="Code" data-desc="Automated discovery: This AI tool helps with code tasks efficiently.">
+            
+            <div class="flex items-start justify-between mb-4">
+                <div class="flex items-center space-x-4">
+                    <div class="h-12 w-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 font-extrabold text-xl flex-shrink-0 group-hover:scale-110 transition-transform">
+                        P
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-white leading-tight">PixelMinds15</h3>
+                        <span class="text-[10px] text-indigo-300 font-bold uppercase tracking-wider bg-indigo-500/10 px-2 py-0.5 rounded-md border border-indigo-500/10">Code</span>
+                    </div>
+                </div>
+                <div class="flex items-center text-gray-500 text-xs font-bold space-x-1 flex-shrink-0">
+                    <span class="text-pink-500">✦</span> <span>134</span>
+                </div>
+            </div>
+
+            <p class="text-gray-400 text-sm mb-8 flex-grow leading-relaxed font-medium">
+                Automated discovery: This AI tool helps with code tasks efficiently.
+            </p>
+
+            <div class="mt-auto">
+                <a href="https://example.com/pixelminds15" target="_blank" rel="noopener noreferrer" 
+                   class="flex items-center justify-center w-full bg-white/5 hover:bg-white/10 text-white font-bold py-3 rounded-2xl transition-all duration-300 text-sm border border-white/5 hover:border-white/10 group-hover:shadow-lg group-hover:shadow-white/5">
+                    Launch Tool
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+        
+        <div class="tool-card glass rounded-3xl overflow-hidden p-6 flex flex-col justify-between h-full group" 
+             data-name="Synthetix84" data-category="Writing" data-desc="Automated discovery: This AI tool helps with writing tasks efficiently.">
+            
+            <div class="flex items-start justify-between mb-4">
+                <div class="flex items-center space-x-4">
+                    <div class="h-12 w-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 font-extrabold text-xl flex-shrink-0 group-hover:scale-110 transition-transform">
+                        S
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-white leading-tight">Synthetix84</h3>
+                        <span class="text-[10px] text-indigo-300 font-bold uppercase tracking-wider bg-indigo-500/10 px-2 py-0.5 rounded-md border border-indigo-500/10">Writing</span>
+                    </div>
+                </div>
+                <div class="flex items-center text-gray-500 text-xs font-bold space-x-1 flex-shrink-0">
+                    <span class="text-pink-500">✦</span> <span>50</span>
+                </div>
+            </div>
+
+            <p class="text-gray-400 text-sm mb-8 flex-grow leading-relaxed font-medium">
+                Automated discovery: This AI tool helps with writing tasks efficiently.
+            </p>
+
+            <div class="mt-auto">
+                <a href="https://example.com/synthetix84" target="_blank" rel="noopener noreferrer" 
+                   class="flex items-center justify-center w-full bg-white/5 hover:bg-white/10 text-white font-bold py-3 rounded-2xl transition-all duration-300 text-sm border border-white/5 hover:border-white/10 group-hover:shadow-lg group-hover:shadow-white/5">
+                    Launch Tool
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+        
+        <div class="tool-card glass rounded-3xl overflow-hidden p-6 flex flex-col justify-between h-full group" 
+             data-name="PixelMinds14" data-category="Productivity" data-desc="Automated discovery: This AI tool helps with productivity tasks efficiently.">
+            
+            <div class="flex items-start justify-between mb-4">
+                <div class="flex items-center space-x-4">
+                    <div class="h-12 w-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 font-extrabold text-xl flex-shrink-0 group-hover:scale-110 transition-transform">
+                        P
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-white leading-tight">PixelMinds14</h3>
+                        <span class="text-[10px] text-indigo-300 font-bold uppercase tracking-wider bg-indigo-500/10 px-2 py-0.5 rounded-md border border-indigo-500/10">Productivity</span>
+                    </div>
+                </div>
+                <div class="flex items-center text-gray-500 text-xs font-bold space-x-1 flex-shrink-0">
+                    <span class="text-pink-500">✦</span> <span>549</span>
+                </div>
+            </div>
+
+            <p class="text-gray-400 text-sm mb-8 flex-grow leading-relaxed font-medium">
+                Automated discovery: This AI tool helps with productivity tasks efficiently.
+            </p>
+
+            <div class="mt-auto">
+                <a href="https://example.com/pixelminds14" target="_blank" rel="noopener noreferrer" 
+                   class="flex items-center justify-center w-full bg-white/5 hover:bg-white/10 text-white font-bold py-3 rounded-2xl transition-all duration-300 text-sm border border-white/5 hover:border-white/10 group-hover:shadow-lg group-hover:shadow-white/5">
+                    Launch Tool
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+        
+        <div class="tool-card glass rounded-3xl overflow-hidden p-6 flex flex-col justify-between h-full group" 
+             data-name="PixelMinds59" data-category="Writing" data-desc="Automated discovery: This AI tool helps with writing tasks efficiently.">
+            
+            <div class="flex items-start justify-between mb-4">
+                <div class="flex items-center space-x-4">
+                    <div class="h-12 w-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 font-extrabold text-xl flex-shrink-0 group-hover:scale-110 transition-transform">
+                        P
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-white leading-tight">PixelMinds59</h3>
+                        <span class="text-[10px] text-indigo-300 font-bold uppercase tracking-wider bg-indigo-500/10 px-2 py-0.5 rounded-md border border-indigo-500/10">Writing</span>
+                    </div>
+                </div>
+                <div class="flex items-center text-gray-500 text-xs font-bold space-x-1 flex-shrink-0">
+                    <span class="text-pink-500">✦</span> <span>525</span>
+                </div>
+            </div>
+
+            <p class="text-gray-400 text-sm mb-8 flex-grow leading-relaxed font-medium">
+                Automated discovery: This AI tool helps with writing tasks efficiently.
+            </p>
+
+            <div class="mt-auto">
+                <a href="https://example.com/pixelminds59" target="_blank" rel="noopener noreferrer" 
+                   class="flex items-center justify-center w-full bg-white/5 hover:bg-white/10 text-white font-bold py-3 rounded-2xl transition-all duration-300 text-sm border border-white/5 hover:border-white/10 group-hover:shadow-lg group-hover:shadow-white/5">
+                    Launch Tool
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+        
+        <div class="tool-card glass rounded-3xl overflow-hidden p-6 flex flex-col justify-between h-full group" 
+             data-name="CodePilot54" data-category="Productivity" data-desc="Automated discovery: This AI tool helps with productivity tasks efficiently.">
+            
+            <div class="flex items-start justify-between mb-4">
+                <div class="flex items-center space-x-4">
+                    <div class="h-12 w-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 font-extrabold text-xl flex-shrink-0 group-hover:scale-110 transition-transform">
+                        C
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-white leading-tight">CodePilot54</h3>
+                        <span class="text-[10px] text-indigo-300 font-bold uppercase tracking-wider bg-indigo-500/10 px-2 py-0.5 rounded-md border border-indigo-500/10">Productivity</span>
+                    </div>
+                </div>
+                <div class="flex items-center text-gray-500 text-xs font-bold space-x-1 flex-shrink-0">
+                    <span class="text-pink-500">✦</span> <span>134</span>
+                </div>
+            </div>
+
+            <p class="text-gray-400 text-sm mb-8 flex-grow leading-relaxed font-medium">
+                Automated discovery: This AI tool helps with productivity tasks efficiently.
+            </p>
+
+            <div class="mt-auto">
+                <a href="https://example.com/codepilot54" target="_blank" rel="noopener noreferrer" 
+                   class="flex items-center justify-center w-full bg-white/5 hover:bg-white/10 text-white font-bold py-3 rounded-2xl transition-all duration-300 text-sm border border-white/5 hover:border-white/10 group-hover:shadow-lg group-hover:shadow-white/5">
+                    Launch Tool
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+        
+        <div class="tool-card glass rounded-3xl overflow-hidden p-6 flex flex-col justify-between h-full group" 
+             data-name="vaethat" data-category="Design" data-desc="Upscale and refine architectural renders using AI.">
+            
+            <div class="flex items-start justify-between mb-4">
+                <div class="flex items-center space-x-4">
+                    <div class="h-12 w-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 font-extrabold text-xl flex-shrink-0 group-hover:scale-110 transition-transform">
+                        V
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-white leading-tight">vaethat</h3>
+                        <span class="text-[10px] text-indigo-300 font-bold uppercase tracking-wider bg-indigo-500/10 px-2 py-0.5 rounded-md border border-indigo-500/10">Design</span>
+                    </div>
+                </div>
+                <div class="flex items-center text-gray-500 text-xs font-bold space-x-1 flex-shrink-0">
+                    <span class="text-pink-500">✦</span> <span>178</span>
+                </div>
+            </div>
+
+            <p class="text-gray-400 text-sm mb-8 flex-grow leading-relaxed font-medium">
+                Upscale and refine architectural renders using AI.
+            </p>
+
+            <div class="mt-auto">
+                <a href="https://www.vaethat.com" target="_blank" rel="noopener noreferrer" 
+                   class="flex items-center justify-center w-full bg-white/5 hover:bg-white/10 text-white font-bold py-3 rounded-2xl transition-all duration-300 text-sm border border-white/5 hover:border-white/10 group-hover:shadow-lg group-hover:shadow-white/5">
+                    Launch Tool
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+        
+        <div class="tool-card glass rounded-3xl overflow-hidden p-6 flex flex-col justify-between h-full group" 
+             data-name="upfirst" data-category="Productivity" data-desc="AI-powered tool to answer calls and book appointments.">
+            
+            <div class="flex items-start justify-between mb-4">
+                <div class="flex items-center space-x-4">
+                    <div class="h-12 w-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 font-extrabold text-xl flex-shrink-0 group-hover:scale-110 transition-transform">
+                        U
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-white leading-tight">upfirst</h3>
+                        <span class="text-[10px] text-indigo-300 font-bold uppercase tracking-wider bg-indigo-500/10 px-2 py-0.5 rounded-md border border-indigo-500/10">Productivity</span>
+                    </div>
+                </div>
+                <div class="flex items-center text-gray-500 text-xs font-bold space-x-1 flex-shrink-0">
+                    <span class="text-pink-500">✦</span> <span>270</span>
+                </div>
+            </div>
+
+            <p class="text-gray-400 text-sm mb-8 flex-grow leading-relaxed font-medium">
+                AI-powered tool to answer calls and book appointments.
+            </p>
+
+            <div class="mt-auto">
+                <a href="https://upfirst.ai" target="_blank" rel="noopener noreferrer" 
+                   class="flex items-center justify-center w-full bg-white/5 hover:bg-white/10 text-white font-bold py-3 rounded-2xl transition-all duration-300 text-sm border border-white/5 hover:border-white/10 group-hover:shadow-lg group-hover:shadow-white/5">
+                    Launch Tool
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+        
+        <div class="tool-card glass rounded-3xl overflow-hidden p-6 flex flex-col justify-between h-full group" 
+             data-name="simplora" data-category="Productivity" data-desc="Assists in meetings and automatically generates action items.">
+            
+            <div class="flex items-start justify-between mb-4">
+                <div class="flex items-center space-x-4">
+                    <div class="h-12 w-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 font-extrabold text-xl flex-shrink-0 group-hover:scale-110 transition-transform">
+                        S
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-white leading-tight">simplora</h3>
+                        <span class="text-[10px] text-indigo-300 font-bold uppercase tracking-wider bg-indigo-500/10 px-2 py-0.5 rounded-md border border-indigo-500/10">Productivity</span>
+                    </div>
+                </div>
+                <div class="flex items-center text-gray-500 text-xs font-bold space-x-1 flex-shrink-0">
+                    <span class="text-pink-500">✦</span> <span>291</span>
+                </div>
+            </div>
+
+            <p class="text-gray-400 text-sm mb-8 flex-grow leading-relaxed font-medium">
+                Assists in meetings and automatically generates action items.
+            </p>
+
+            <div class="mt-auto">
+                <a href="https://simplora.ai" target="_blank" rel="noopener noreferrer" 
+                   class="flex items-center justify-center w-full bg-white/5 hover:bg-white/10 text-white font-bold py-3 rounded-2xl transition-all duration-300 text-sm border border-white/5 hover:border-white/10 group-hover:shadow-lg group-hover:shadow-white/5">
+                    Launch Tool
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+        
+        <div class="tool-card glass rounded-3xl overflow-hidden p-6 flex flex-col justify-between h-full group" 
+             data-name="orita" data-category="Marketing" data-desc="Segments customers and filters unengaged contacts for marketing.">
+            
+            <div class="flex items-start justify-between mb-4">
+                <div class="flex items-center space-x-4">
+                    <div class="h-12 w-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 font-extrabold text-xl flex-shrink-0 group-hover:scale-110 transition-transform">
+                        O
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-white leading-tight">orita</h3>
+                        <span class="text-[10px] text-indigo-300 font-bold uppercase tracking-wider bg-indigo-500/10 px-2 py-0.5 rounded-md border border-indigo-500/10">Marketing</span>
+                    </div>
+                </div>
+                <div class="flex items-center text-gray-500 text-xs font-bold space-x-1 flex-shrink-0">
+                    <span class="text-pink-500">✦</span> <span>503</span>
+                </div>
+            </div>
+
+            <p class="text-gray-400 text-sm mb-8 flex-grow leading-relaxed font-medium">
+                Segments customers and filters unengaged contacts for marketing.
+            </p>
+
+            <div class="mt-auto">
+                <a href="https://orita.ai" target="_blank" rel="noopener noreferrer" 
+                   class="flex items-center justify-center w-full bg-white/5 hover:bg-white/10 text-white font-bold py-3 rounded-2xl transition-all duration-300 text-sm border border-white/5 hover:border-white/10 group-hover:shadow-lg group-hover:shadow-white/5">
+                    Launch Tool
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+        
+        <div class="tool-card glass rounded-3xl overflow-hidden p-6 flex flex-col justify-between h-full group" 
+             data-name="mixels-ai" data-category="Design" data-desc="Generates pixel art and sprites for game development.">
+            
+            <div class="flex items-start justify-between mb-4">
+                <div class="flex items-center space-x-4">
+                    <div class="h-12 w-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 font-extrabold text-xl flex-shrink-0 group-hover:scale-110 transition-transform">
+                        M
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-white leading-tight">mixels-ai</h3>
+                        <span class="text-[10px] text-indigo-300 font-bold uppercase tracking-wider bg-indigo-500/10 px-2 py-0.5 rounded-md border border-indigo-500/10">Design</span>
+                    </div>
+                </div>
+                <div class="flex items-center text-gray-500 text-xs font-bold space-x-1 flex-shrink-0">
+                    <span class="text-pink-500">✦</span> <span>473</span>
+                </div>
+            </div>
+
+            <p class="text-gray-400 text-sm mb-8 flex-grow leading-relaxed font-medium">
+                Generates pixel art and sprites for game development.
+            </p>
+
+            <div class="mt-auto">
+                <a href="https://mixels.ai" target="_blank" rel="noopener noreferrer" 
+                   class="flex items-center justify-center w-full bg-white/5 hover:bg-white/10 text-white font-bold py-3 rounded-2xl transition-all duration-300 text-sm border border-white/5 hover:border-white/10 group-hover:shadow-lg group-hover:shadow-white/5">
+                    Launch Tool
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+        
+        <div class="tool-card glass rounded-3xl overflow-hidden p-6 flex flex-col justify-between h-full group" 
+             data-name="screentell" data-category="Video" data-desc="Records and edits screen videos with AI enhancement.">
+            
+            <div class="flex items-start justify-between mb-4">
+                <div class="flex items-center space-x-4">
+                    <div class="h-12 w-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 font-extrabold text-xl flex-shrink-0 group-hover:scale-110 transition-transform">
+                        S
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-white leading-tight">screentell</h3>
+                        <span class="text-[10px] text-indigo-300 font-bold uppercase tracking-wider bg-indigo-500/10 px-2 py-0.5 rounded-md border border-indigo-500/10">Video</span>
+                    </div>
+                </div>
+                <div class="flex items-center text-gray-500 text-xs font-bold space-x-1 flex-shrink-0">
+                    <span class="text-pink-500">✦</span> <span>345</span>
+                </div>
+            </div>
+
+            <p class="text-gray-400 text-sm mb-8 flex-grow leading-relaxed font-medium">
+                Records and edits screen videos with AI enhancement.
+            </p>
+
+            <div class="mt-auto">
+                <a href="https://screentell.com" target="_blank" rel="noopener noreferrer" 
+                   class="flex items-center justify-center w-full bg-white/5 hover:bg-white/10 text-white font-bold py-3 rounded-2xl transition-all duration-300 text-sm border border-white/5 hover:border-white/10 group-hover:shadow-lg group-hover:shadow-white/5">
+                    Launch Tool
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+        
+        <div class="tool-card glass rounded-3xl overflow-hidden p-6 flex flex-col justify-between h-full group" 
+             data-name="ngram" data-category="Video" data-desc="Creates branded videos directly from documents.">
+            
+            <div class="flex items-start justify-between mb-4">
+                <div class="flex items-center space-x-4">
+                    <div class="h-12 w-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 font-extrabold text-xl flex-shrink-0 group-hover:scale-110 transition-transform">
+                        N
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-white leading-tight">ngram</h3>
+                        <span class="text-[10px] text-indigo-300 font-bold uppercase tracking-wider bg-indigo-500/10 px-2 py-0.5 rounded-md border border-indigo-500/10">Video</span>
+                    </div>
+                </div>
+                <div class="flex items-center text-gray-500 text-xs font-bold space-x-1 flex-shrink-0">
+                    <span class="text-pink-500">✦</span> <span>147</span>
+                </div>
+            </div>
+
+            <p class="text-gray-400 text-sm mb-8 flex-grow leading-relaxed font-medium">
+                Creates branded videos directly from documents.
+            </p>
+
+            <div class="mt-auto">
+                <a href="https://ngram.io" target="_blank" rel="noopener noreferrer" 
+                   class="flex items-center justify-center w-full bg-white/5 hover:bg-white/10 text-white font-bold py-3 rounded-2xl transition-all duration-300 text-sm border border-white/5 hover:border-white/10 group-hover:shadow-lg group-hover:shadow-white/5">
+                    Launch Tool
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+        
+        <div class="tool-card glass rounded-3xl overflow-hidden p-6 flex flex-col justify-between h-full group" 
+             data-name="spreadsimple" data-category="Web Development" data-desc="Builds functional websites directly from Google Sheets.">
+            
+            <div class="flex items-start justify-between mb-4">
+                <div class="flex items-center space-x-4">
+                    <div class="h-12 w-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 font-extrabold text-xl flex-shrink-0 group-hover:scale-110 transition-transform">
+                        S
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-white leading-tight">spreadsimple</h3>
+                        <span class="text-[10px] text-indigo-300 font-bold uppercase tracking-wider bg-indigo-500/10 px-2 py-0.5 rounded-md border border-indigo-500/10">Web Development</span>
+                    </div>
+                </div>
+                <div class="flex items-center text-gray-500 text-xs font-bold space-x-1 flex-shrink-0">
+                    <span class="text-pink-500">✦</span> <span>267</span>
+                </div>
+            </div>
+
+            <p class="text-gray-400 text-sm mb-8 flex-grow leading-relaxed font-medium">
                 Builds functional websites directly from Google Sheets.
             </p>
 
-            <div class="mt-auto pt-4 border-t border-gray-100">
+            <div class="mt-auto">
                 <a href="https://spreadsimple.com" target="_blank" rel="noopener noreferrer" 
-                   class="block w-full text-center bg-gray-900 hover:bg-indigo-600 text-white font-medium py-2.5 rounded-lg transition-colors duration-200 text-sm">
-                    Visit Website
+                   class="flex items-center justify-center w-full bg-white/5 hover:bg-white/10 text-white font-bold py-3 rounded-2xl transition-all duration-300 text-sm border border-white/5 hover:border-white/10 group-hover:shadow-lg group-hover:shadow-white/5">
+                    Launch Tool
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
                 </a>
             </div>
         </div>
         
-        <div class="tool-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 p-6 flex flex-col justify-between h-full" 
+        <div class="tool-card glass rounded-3xl overflow-hidden p-6 flex flex-col justify-between h-full group" 
              data-name="recap-flow" data-category="Productivity" data-desc="Summarizes meetings and generates structured business plans.">
             
             <div class="flex items-start justify-between mb-4">
-                <div class="flex items-center space-x-3">
-                    <div class="h-10 w-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold text-lg flex-shrink-0">
+                <div class="flex items-center space-x-4">
+                    <div class="h-12 w-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 font-extrabold text-xl flex-shrink-0 group-hover:scale-110 transition-transform">
                         R
                     </div>
                     <div>
-                        <h3 class="text-lg font-bold text-gray-900 leading-tight">recap-flow</h3>
-                        <span class="text-xs text-gray-500 font-medium bg-gray-100 px-2 py-0.5 rounded-full">Productivity</span>
+                        <h3 class="text-lg font-bold text-white leading-tight">recap-flow</h3>
+                        <span class="text-[10px] text-indigo-300 font-bold uppercase tracking-wider bg-indigo-500/10 px-2 py-0.5 rounded-md border border-indigo-500/10">Productivity</span>
                     </div>
                 </div>
-                <div class="flex items-center text-gray-400 text-xs space-x-1 flex-shrink-0">
-                    <span>❤️ 455</span>
+                <div class="flex items-center text-gray-500 text-xs font-bold space-x-1 flex-shrink-0">
+                    <span class="text-pink-500">✦</span> <span>312</span>
                 </div>
             </div>
 
-            <p class="text-gray-600 text-sm mb-6 flex-grow leading-relaxed">
+            <p class="text-gray-400 text-sm mb-8 flex-grow leading-relaxed font-medium">
                 Summarizes meetings and generates structured business plans.
             </p>
 
-            <div class="mt-auto pt-4 border-t border-gray-100">
+            <div class="mt-auto">
                 <a href="https://recapflow.com" target="_blank" rel="noopener noreferrer" 
-                   class="block w-full text-center bg-gray-900 hover:bg-indigo-600 text-white font-medium py-2.5 rounded-lg transition-colors duration-200 text-sm">
-                    Visit Website
+                   class="flex items-center justify-center w-full bg-white/5 hover:bg-white/10 text-white font-bold py-3 rounded-2xl transition-all duration-300 text-sm border border-white/5 hover:border-white/10 group-hover:shadow-lg group-hover:shadow-white/5">
+                    Launch Tool
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
                 </a>
             </div>
         </div>
         
-        <div class="tool-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 p-6 flex flex-col justify-between h-full" 
+        <div class="tool-card glass rounded-3xl overflow-hidden p-6 flex flex-col justify-between h-full group" 
              data-name="jugl-ai" data-category="Business" data-desc="Automates sales and support conversations using AI.">
             
             <div class="flex items-start justify-between mb-4">
-                <div class="flex items-center space-x-3">
-                    <div class="h-10 w-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold text-lg flex-shrink-0">
+                <div class="flex items-center space-x-4">
+                    <div class="h-12 w-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 font-extrabold text-xl flex-shrink-0 group-hover:scale-110 transition-transform">
                         J
                     </div>
                     <div>
-                        <h3 class="text-lg font-bold text-gray-900 leading-tight">jugl-ai</h3>
-                        <span class="text-xs text-gray-500 font-medium bg-gray-100 px-2 py-0.5 rounded-full">Business</span>
+                        <h3 class="text-lg font-bold text-white leading-tight">jugl-ai</h3>
+                        <span class="text-[10px] text-indigo-300 font-bold uppercase tracking-wider bg-indigo-500/10 px-2 py-0.5 rounded-md border border-indigo-500/10">Business</span>
                     </div>
                 </div>
-                <div class="flex items-center text-gray-400 text-xs space-x-1 flex-shrink-0">
-                    <span>❤️ 123</span>
+                <div class="flex items-center text-gray-500 text-xs font-bold space-x-1 flex-shrink-0">
+                    <span class="text-pink-500">✦</span> <span>142</span>
                 </div>
             </div>
 
-            <p class="text-gray-600 text-sm mb-6 flex-grow leading-relaxed">
+            <p class="text-gray-400 text-sm mb-8 flex-grow leading-relaxed font-medium">
                 Automates sales and support conversations using AI.
             </p>
 
-            <div class="mt-auto pt-4 border-t border-gray-100">
+            <div class="mt-auto">
                 <a href="https://jugl.com" target="_blank" rel="noopener noreferrer" 
-                   class="block w-full text-center bg-gray-900 hover:bg-indigo-600 text-white font-medium py-2.5 rounded-lg transition-colors duration-200 text-sm">
-                    Visit Website
+                   class="flex items-center justify-center w-full bg-white/5 hover:bg-white/10 text-white font-bold py-3 rounded-2xl transition-all duration-300 text-sm border border-white/5 hover:border-white/10 group-hover:shadow-lg group-hover:shadow-white/5">
+                    Launch Tool
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
                 </a>
             </div>
         </div>
         
-            </div>
-        </div>
-
-        <!-- Sidebar: News & LLM Leaderboard -->
-        <div class="space-y-8">
-            <!-- LLM Leaderboard -->
-            <div class="bg-white rounded-xl shadow-md p-6 border border-gray-100">
-                <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center">
-                    <span class="mr-2">🏆</span> Best Free LLMs
-                </h3>
-                <div class="space-y-4" id="llmLeaderboard">
-                    
-        <div class="bg-gray-50 rounded-lg p-4 border border-gray-200">
-            <div class="flex justify-between items-start mb-2">
-                <h4 class="font-bold text-gray-900">🥇 Llama 3 70B</h4>
-                <span class="text-xs font-semibold px-2 py-1 bg-green-100 text-green-800 rounded-full">High</span>
-            </div>
-            <p class="text-xs text-gray-500 mb-2">by Meta • 8k Context</p>
-            <p class="text-sm text-gray-700 mb-3">Best open-source model for general reasoning.</p>
-            <div class="flex justify-between items-center text-xs">
-                <span class="font-mono bg-gray-200 px-1 rounded">Free (Open Source)</span>
-                <a href="https://llama.meta.com/" target="_blank" class="text-indigo-600 hover:underline">Try it →</a>
-            </div>
-        </div>
-        
-        <div class="bg-gray-50 rounded-lg p-4 border border-gray-200">
-            <div class="flex justify-between items-start mb-2">
-                <h4 class="font-bold text-gray-900">🥈 Mistral Large</h4>
-                <span class="text-xs font-semibold px-2 py-1 bg-green-100 text-green-800 rounded-full">Very High</span>
-            </div>
-            <p class="text-xs text-gray-500 mb-2">by Mistral AI • 32k Context</p>
-            <p class="text-sm text-gray-700 mb-3">Strong coding capabilities and multilingual support.</p>
-            <div class="flex justify-between items-center text-xs">
-                <span class="font-mono bg-gray-200 px-1 rounded">Free Tier Available</span>
-                <a href="https://mistral.ai/" target="_blank" class="text-indigo-600 hover:underline">Try it →</a>
-            </div>
-        </div>
-        
-        <div class="bg-gray-50 rounded-lg p-4 border border-gray-200">
-            <div class="flex justify-between items-start mb-2">
-                <h4 class="font-bold text-gray-900">🥉 Gemini 1.5 Pro</h4>
-                <span class="text-xs font-semibold px-2 py-1 bg-green-100 text-green-800 rounded-full">Elite</span>
-            </div>
-            <p class="text-xs text-gray-500 mb-2">by Google • 1M+ Context</p>
-            <p class="text-sm text-gray-700 mb-3">Massive context window for analyzing books/codebases.</p>
-            <div class="flex justify-between items-center text-xs">
-                <span class="font-mono bg-gray-200 px-1 rounded">Free (via AI Studio)</span>
-                <a href="https://aistudio.google.com/" target="_blank" class="text-indigo-600 hover:underline">Try it →</a>
-            </div>
-        </div>
-        
                 </div>
             </div>
 
-            <!-- AI News -->
-            <div class="bg-white rounded-xl shadow-md p-6 border border-gray-100">
-                <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center">
-                    <span class="mr-2">📰</span> Latest AI News
-                </h3>
-                <div class="space-y-4" id="aiNews">
-                    
+            <!-- Sidebar: News & LLM Leaderboard -->
+            <aside class="lg:col-span-4 space-y-10">
+                <div class="sticky-sidebar space-y-10">
+                    <!-- LLM Leaderboard -->
+                    <div class="glass rounded-3xl p-8">
+                        <h3 class="text-xl font-extrabold text-white mb-6 flex items-center">
+                            <span class="mr-3 text-indigo-400">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-1.947 3.42 3.42 0 016.438 0 3.42 3.42 0 001.946 1.947 3.42 3.42 0 010 6.438 3.42 3.42 0 00-1.946 1.946 3.42 3.42 0 01-6.438 0 3.42 3.42 0 00-1.946-1.946 3.42 3.42 0 010-6.438z" />
+                                </svg>
+                            </span> 
+                            Top Models
+                        </h3>
+                        <div class="space-y-4" id="llmLeaderboard">
+                            
+        <div class="relative p-4 rounded-2xl bg-white/5 border border-white/5 hover:border-white/10 transition-colors">
+            <div class="flex justify-between items-start mb-3">
+                <h4 class="font-bold text-white flex items-center text-sm">
+                    <span class="mr-2 text-yellow-400 font-black">01</span> 
+                    Llama 3 70B
+                </h4>
+                <span class="text-[10px] font-black px-2 py-0.5 bg-indigo-500/20 text-indigo-300 rounded-md border border-indigo-500/10 uppercase tracking-tighter">High</span>
+            </div>
+            <p class="text-[10px] text-gray-500 mb-3 font-bold uppercase tracking-wider">by Meta • 8k ctx</p>
+            <p class="text-xs text-gray-400 mb-4 font-medium leading-relaxed">Best open-source model for general reasoning.</p>
+            <div class="flex justify-between items-center text-[10px]">
+                <span class="font-black text-white bg-white/10 px-2 py-1 rounded-md uppercase tracking-widest">Free (Open Source)</span>
+                <a href="https://llama.meta.com/" target="_blank" class="text-indigo-400 hover:text-indigo-300 font-black flex items-center uppercase tracking-widest">
+                    Access 
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+        
+        <div class="relative p-4 rounded-2xl bg-white/5 border border-white/5 hover:border-white/10 transition-colors">
+            <div class="flex justify-between items-start mb-3">
+                <h4 class="font-bold text-white flex items-center text-sm">
+                    <span class="mr-2 text-slate-300 font-black">02</span> 
+                    Mistral Large
+                </h4>
+                <span class="text-[10px] font-black px-2 py-0.5 bg-indigo-500/20 text-indigo-300 rounded-md border border-indigo-500/10 uppercase tracking-tighter">Very High</span>
+            </div>
+            <p class="text-[10px] text-gray-500 mb-3 font-bold uppercase tracking-wider">by Mistral AI • 32k ctx</p>
+            <p class="text-xs text-gray-400 mb-4 font-medium leading-relaxed">Strong coding capabilities and multilingual support.</p>
+            <div class="flex justify-between items-center text-[10px]">
+                <span class="font-black text-white bg-white/10 px-2 py-1 rounded-md uppercase tracking-widest">Free Tier Available</span>
+                <a href="https://mistral.ai/" target="_blank" class="text-indigo-400 hover:text-indigo-300 font-black flex items-center uppercase tracking-widest">
+                    Access 
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+        
+        <div class="relative p-4 rounded-2xl bg-white/5 border border-white/5 hover:border-white/10 transition-colors">
+            <div class="flex justify-between items-start mb-3">
+                <h4 class="font-bold text-white flex items-center text-sm">
+                    <span class="mr-2 text-amber-600 font-black">03</span> 
+                    Gemini 1.5 Pro
+                </h4>
+                <span class="text-[10px] font-black px-2 py-0.5 bg-indigo-500/20 text-indigo-300 rounded-md border border-indigo-500/10 uppercase tracking-tighter">Elite</span>
+            </div>
+            <p class="text-[10px] text-gray-500 mb-3 font-bold uppercase tracking-wider">by Google • 1M+ ctx</p>
+            <p class="text-xs text-gray-400 mb-4 font-medium leading-relaxed">Massive context window for analyzing books/codebases.</p>
+            <div class="flex justify-between items-center text-[10px]">
+                <span class="font-black text-white bg-white/10 px-2 py-1 rounded-md uppercase tracking-widest">Free (via AI Studio)</span>
+                <a href="https://aistudio.google.com/" target="_blank" class="text-indigo-400 hover:text-indigo-300 font-black flex items-center uppercase tracking-widest">
+                    Access 
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+        
+                        </div>
+                    </div>
+
+                    <!-- AI News -->
+                    <div class="glass rounded-3xl p-8">
+                        <h3 class="text-xl font-extrabold text-white mb-6 flex items-center">
+                            <span class="mr-3 text-pink-400">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9.5a2.5 2.5 0 00-2.5-2.5H15" />
+                                </svg>
+                            </span> 
+                            Neural Feed
+                        </h3>
+                        <div class="space-y-6" id="aiNews">
+                            
         <a href="https://techcrunch.com/tag/artificial-intelligence/" target="_blank" class="block group">
-            <div class="border-l-4 border-indigo-500 pl-4 py-2 hover:bg-gray-50 transition-colors rounded-r-lg">
-                <h4 class="font-bold text-gray-900 group-hover:text-indigo-600 transition-colors">GPT-5 Rumors: Everything We Know</h4>
-                <p class="text-sm text-gray-600 mt-1 line-clamp-2">OpenAI's next model might focus on reasoning capabilities.</p>
-                <span class="text-xs text-gray-400 mt-2 block">2026-02-15</span>
+            <div class="relative pl-6 py-1">
+                <div class="absolute left-0 top-0 bottom-0 w-[2px] bg-white/5 group-hover:bg-indigo-500 transition-colors"></div>
+                <h4 class="font-bold text-gray-200 group-hover:text-white transition-colors text-sm leading-snug">GPT-5 Rumors: Everything We Know</h4>
+                <p class="text-xs text-gray-500 mt-2 line-clamp-2 font-medium">OpenAI's next model might focus on reasoning capabilities.</p>
+                <div class="flex items-center mt-3 text-[10px] text-gray-600 font-bold uppercase tracking-widest">
+                    <span>2026-02-15</span>
+                </div>
             </div>
         </a>
     
         <a href="https://blog.google/technology/ai/" target="_blank" class="block group">
-            <div class="border-l-4 border-indigo-500 pl-4 py-2 hover:bg-gray-50 transition-colors rounded-r-lg">
-                <h4 class="font-bold text-gray-900 group-hover:text-indigo-600 transition-colors">Google Gemini Ultra Released for Everyone</h4>
-                <p class="text-sm text-gray-600 mt-1 line-clamp-2">The powerful multimodal model is now available globally.</p>
-                <span class="text-xs text-gray-400 mt-2 block">2026-02-15</span>
+            <div class="relative pl-6 py-1">
+                <div class="absolute left-0 top-0 bottom-0 w-[2px] bg-white/5 group-hover:bg-indigo-500 transition-colors"></div>
+                <h4 class="font-bold text-gray-200 group-hover:text-white transition-colors text-sm leading-snug">Google Gemini Ultra Released for Everyone</h4>
+                <p class="text-xs text-gray-500 mt-2 line-clamp-2 font-medium">The powerful multimodal model is now available globally.</p>
+                <div class="flex items-center mt-3 text-[10px] text-gray-600 font-bold uppercase tracking-widest">
+                    <span>2026-02-15</span>
+                </div>
             </div>
         </a>
     
         <a href="https://ai.meta.com/blog/" target="_blank" class="block group">
-            <div class="border-l-4 border-indigo-500 pl-4 py-2 hover:bg-gray-50 transition-colors rounded-r-lg">
-                <h4 class="font-bold text-gray-900 group-hover:text-indigo-600 transition-colors">Meta's Llama 4 Leaked Benchmarks</h4>
-                <p class="text-sm text-gray-600 mt-1 line-clamp-2">Early tests show promising results against proprietary models.</p>
-                <span class="text-xs text-gray-400 mt-2 block">2026-02-15</span>
+            <div class="relative pl-6 py-1">
+                <div class="absolute left-0 top-0 bottom-0 w-[2px] bg-white/5 group-hover:bg-indigo-500 transition-colors"></div>
+                <h4 class="font-bold text-gray-200 group-hover:text-white transition-colors text-sm leading-snug">Meta's Llama 4 Leaked Benchmarks</h4>
+                <p class="text-xs text-gray-500 mt-2 line-clamp-2 font-medium">Early tests show promising results against proprietary models.</p>
+                <div class="flex items-center mt-3 text-[10px] text-gray-600 font-bold uppercase tracking-widest">
+                    <span>2026-02-15</span>
+                </div>
             </div>
         </a>
     
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </aside>
         </div>
-    </div>
+    </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div>
-                <h3 class="text-lg font-semibold mb-4">About AI Review</h3>
-                <p class="text-gray-400 text-sm">Helping you find the perfect AI tools for your workflow. Updated daily via GitHub Actions.</p>
+    <footer class="bg-slate-950 border-t border-white/5 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+                <div class="md:col-span-2">
+                    <span class="text-2xl font-extrabold tracking-tight text-white italic mb-6 block">AI<span class="text-indigo-400">Review</span></span>
+                    <p class="text-gray-500 max-w-sm leading-relaxed">Pioneering the discovery of elite artificial intelligence tools for creators, developers, and visionaries.</p>
+                </div>
+                <div>
+                    <h3 class="text-sm font-bold text-white uppercase tracking-widest mb-6">Resources</h3>
+                    <ul class="space-y-4 text-sm text-gray-500">
+                        <li><a href="#" class="hover:text-indigo-400 transition-colors">Submit Tool</a></li>
+                        <li><a href="advertise.html" class="hover:text-indigo-400 transition-colors">Advertise</a></li>
+                        <li><a href="privacy.html" class="hover:text-indigo-400 transition-colors">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-bold text-white uppercase tracking-widest mb-6">Newsletter</h3>
+                    <p class="text-xs text-gray-600 mb-4">Stay ahead of the curve with our weekly dispatch.</p>
+                    <a href="https://forms.gle/cDJsRWLXV1dsRgcs7" target="_blank" class="inline-block bg-white text-slate-900 px-6 py-2 rounded-full text-xs font-bold hover:bg-indigo-400 hover:text-white transition-all">Join Pulse</a>
+                </div>
             </div>
-            <div>
-                <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
-                <ul class="space-y-2 text-sm text-gray-400">
-                    <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSfD_example_form_id/viewform" target="_blank" class="hover:text-white">Submit a Tool</a></li>
-                    <li><a href="#" class="hover:text-white">Advertise</a></li>
-                    <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
-                </ul>
+            <div class="mt-16 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-600">
+                <span>&copy; 2026 AI Review Site. Architected for the future.</span>
+                <div class="flex gap-6">
+                    <a href="#" class="hover:text-white transition-colors">Twitter</a>
+                    <a href="#" class="hover:text-white transition-colors">LinkedIn</a>
+                    <a href="#" class="hover:text-white transition-colors">GitHub</a>
+                </div>
             </div>
-            <div>
-                <h3 class="text-lg font-semibold mb-4">Stay Updated</h3>
-                <form action="https://docs.google.com/forms/d/e/1FAIpQLSfD_example_subscribe_id/viewform" target="_blank" class="flex gap-2">
-                    <button class="bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-md font-medium transition w-full">Subscribe to Newsletter</button>
-                </form>
-            </div>
-        </div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 pt-8 border-t border-gray-700 text-center text-sm text-gray-500">
-            &copy; 2026 AI Review Site. All rights reserved.
         </div>
     </footer>
 
@@ -771,14 +979,14 @@
             
             buttons.forEach(btn => {
                 const btnCat = btn.getAttribute('data-category');
-                const isAll = (category === 'all' && btn.innerText.trim() === 'All');
+                const isAll = (category === 'all' && btn.innerText.trim() === 'All Universe');
                 
                 if (btnCat === category || isAll) {
-                    btn.classList.add('bg-indigo-600', 'text-white', 'border-transparent');
-                    btn.classList.remove('bg-white', 'text-gray-700', 'border-gray-200');
+                    btn.classList.add('bg-indigo-600', 'text-white', 'border-indigo-400/20');
+                    btn.classList.remove('text-gray-400', 'border-white/5');
                 } else {
-                    btn.classList.remove('bg-indigo-600', 'text-white', 'border-transparent');
-                    btn.classList.add('bg-white', 'text-gray-700', 'border-gray-200');
+                    btn.classList.remove('bg-indigo-600', 'text-white', 'border-indigo-400/20');
+                    btn.classList.add('text-gray-400', 'border-white/5');
                 }
             });
 
