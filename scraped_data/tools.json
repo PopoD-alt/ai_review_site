@@ -1,5 +1,12 @@
 [
   {
+    "name": "CodePilot27",
+    "description": "Automated discovery: This AI tool helps with writing tasks efficiently.",
+    "category": "Writing",
+    "url": "https://example.com/codepilot27",
+    "date_added": "2026-03-11"
+  },
+  {
     "name": "PixelMinds1",
     "description": "Automated discovery: This AI tool helps with marketing tasks efficiently.",
     "category": "Marketing",
