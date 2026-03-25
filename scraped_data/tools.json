@@ -1,5 +1,12 @@
 [
   {
+    "name": "CopyGenius88",
+    "description": "Automated discovery: This AI tool helps with video tasks efficiently.",
+    "category": "Video",
+    "url": "https://example.com/copygenius88",
+    "date_added": "2026-03-25"
+  },
+  {
     "name": "Synthetix67",
     "description": "Automated discovery: This AI tool helps with code tasks efficiently.",
     "category": "Code",
@@ -332,11 +339,5 @@
     "description": "Summarizes meetings and generates structured business plans.",
     "category": "Productivity",
     "url": "https://recapflow.com"
-  },
-  {
-    "name": "jugl-ai",
-    "description": "Automates sales and support conversations using AI.",
-    "category": "Business",
-    "url": "https://jugl.com"
   }
 ]
