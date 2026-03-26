@@ -1,5 +1,12 @@
 [
   {
+    "name": "CodePilot72",
+    "description": "Automated discovery: This AI tool helps with code tasks efficiently.",
+    "category": "Code",
+    "url": "https://example.com/codepilot72",
+    "date_added": "2026-03-26"
+  },
+  {
     "name": "CopyGenius88",
     "description": "Automated discovery: This AI tool helps with video tasks efficiently.",
     "category": "Video",
@@ -333,11 +340,5 @@
     "description": "Builds functional websites directly from Google Sheets.",
     "category": "Web Development",
     "url": "https://spreadsimple.com"
-  },
-  {
-    "name": "recap-flow",
-    "description": "Summarizes meetings and generates structured business plans.",
-    "category": "Productivity",
-    "url": "https://recapflow.com"
   }
 ]
