@@ -1,5 +1,12 @@
 [
   {
+    "name": "PixelMinds70",
+    "description": "Automated discovery: This AI tool helps with video tasks efficiently.",
+    "category": "Video",
+    "url": "https://example.com/pixelminds70",
+    "date_added": "2026-03-27"
+  },
+  {
     "name": "CodePilot72",
     "description": "Automated discovery: This AI tool helps with code tasks efficiently.",
     "category": "Code",
@@ -334,11 +341,5 @@
     "description": "Creates branded videos directly from documents.",
     "category": "Video",
     "url": "https://ngram.io"
-  },
-  {
-    "name": "spreadsimple",
-    "description": "Builds functional websites directly from Google Sheets.",
-    "category": "Web Development",
-    "url": "https://spreadsimple.com"
   }
 ]
