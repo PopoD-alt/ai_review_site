@@ -1,5 +1,12 @@
 [
   {
+    "name": "PixelMinds30",
+    "description": "Automated discovery: This AI tool helps with video tasks efficiently.",
+    "category": "Video",
+    "url": "https://example.com/pixelminds30",
+    "date_added": "2026-03-29"
+  },
+  {
     "name": "BrainWave76",
     "description": "Automated discovery: This AI tool helps with video tasks efficiently.",
     "category": "Video",
@@ -336,11 +343,5 @@
     "description": "Generates pixel art and sprites for game development.",
     "category": "Design",
     "url": "https://mixels.ai"
-  },
-  {
-    "name": "screentell",
-    "description": "Records and edits screen videos with AI enhancement.",
-    "category": "Video",
-    "url": "https://screentell.com"
   }
 ]
