@@ -1,5 +1,12 @@
 [
   {
+    "name": "CodePilot90",
+    "description": "Automated discovery: This AI tool helps with design tasks efficiently.",
+    "category": "Design",
+    "url": "https://example.com/codepilot90",
+    "date_added": "2026-03-31"
+  },
+  {
     "name": "CodePilot41",
     "description": "Automated discovery: This AI tool helps with video tasks efficiently.",
     "category": "Video",
@@ -338,11 +345,5 @@
     "description": "Assists in meetings and automatically generates action items.",
     "category": "Productivity",
     "url": "https://simplora.ai"
-  },
-  {
-    "name": "orita",
-    "description": "Segments customers and filters unengaged contacts for marketing.",
-    "category": "Marketing",
-    "url": "https://orita.ai"
   }
 ]
