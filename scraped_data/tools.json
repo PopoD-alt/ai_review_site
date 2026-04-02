@@ -1,5 +1,12 @@
 [
   {
+    "name": "Synthetix6",
+    "description": "Automated discovery: This AI tool helps with marketing tasks efficiently.",
+    "category": "Marketing",
+    "url": "https://example.com/synthetix6",
+    "date_added": "2026-04-02"
+  },
+  {
     "name": "Synthetix78",
     "description": "Automated discovery: This AI tool helps with design tasks efficiently.",
     "category": "Design",
@@ -340,11 +347,5 @@
     "description": "Upscale and refine architectural renders using AI.",
     "category": "Design",
     "url": "https://www.vaethat.com"
-  },
-  {
-    "name": "upfirst",
-    "description": "AI-powered tool to answer calls and book appointments.",
-    "category": "Productivity",
-    "url": "https://upfirst.ai"
   }
 ]
