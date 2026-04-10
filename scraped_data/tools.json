@@ -1,5 +1,12 @@
 [
   {
+    "name": "NovaFlow14",
+    "description": "Automated discovery: This AI tool helps with writing tasks efficiently.",
+    "category": "Writing",
+    "url": "https://example.com/novaflow14",
+    "date_added": "2026-04-10"
+  },
+  {
     "name": "CodePilot16",
     "description": "Automated discovery: This AI tool helps with productivity tasks efficiently.",
     "category": "Productivity",
@@ -340,13 +347,6 @@
     "description": "OpenAI's text-to-video model that creates highly realistic scenes from text instructions.",
     "category": "Video",
     "url": "https://openai.com/sora",
-    "date_added": "2026-02-21"
-  },
-  {
-    "name": "Veo",
-    "description": "Google DeepMind's most capable generative video model for creators and filmmakers.",
-    "category": "Video",
-    "url": "https://deepmind.google/technologies/veo/",
     "date_added": "2026-02-21"
   }
 ]
