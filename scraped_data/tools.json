@@ -1,5 +1,12 @@
 [
   {
+    "name": "CopyGenius3",
+    "description": "Automated discovery: This AI tool helps with video tasks efficiently.",
+    "category": "Video",
+    "url": "https://example.com/copygenius3",
+    "date_added": "2026-04-16"
+  },
+  {
     "name": "PixelMinds71",
     "description": "Automated discovery: This AI tool helps with design tasks efficiently.",
     "category": "Design",
@@ -341,12 +348,5 @@
     "category": "Video",
     "url": "https://example.com/pixelminds10",
     "date_added": "2026-02-26"
-  },
-  {
-    "name": "PixelMinds15",
-    "description": "Automated discovery: This AI tool helps with video tasks efficiently.",
-    "category": "Video",
-    "url": "https://example.com/pixelminds15",
-    "date_added": "2026-02-25"
   }
 ]
