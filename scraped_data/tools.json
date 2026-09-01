@@ -1,5 +1,12 @@
 [
   {
+    "name": "BrainWave10",
+    "description": "Automated discovery: This AI tool helps with writing tasks efficiently.",
+    "category": "Writing",
+    "url": "https://example.com/brainwave10",
+    "date_added": "2026-09-01"
+  },
+  {
     "name": "CopyGenius61",
     "description": "Automated discovery: This AI tool helps with productivity tasks efficiently.",
     "category": "Productivity",
@@ -341,12 +348,5 @@
     "category": "Marketing",
     "url": "https://example.com/brainwave61",
     "date_added": "2026-07-14"
-  },
-  {
-    "name": "CopyGenius44",
-    "description": "Automated discovery: This AI tool helps with writing tasks efficiently.",
-    "category": "Writing",
-    "url": "https://example.com/copygenius44",
-    "date_added": "2026-07-13"
   }
 ]
