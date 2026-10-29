@@ -1,5 +1,12 @@
 [
   {
+    "name": "BrainWave51",
+    "description": "Automated discovery: This AI tool helps with marketing tasks efficiently.",
+    "category": "Marketing",
+    "url": "https://example.com/brainwave51",
+    "date_added": "2026-10-29"
+  },
+  {
     "name": "PixelMinds41",
     "description": "Automated discovery: This AI tool helps with video tasks efficiently.",
     "category": "Video",
@@ -341,12 +348,5 @@
     "category": "Code",
     "url": "https://example.com/synthetix55",
     "date_added": "2026-09-10"
-  },
-  {
-    "name": "CopyGenius18",
-    "description": "Automated discovery: This AI tool helps with design tasks efficiently.",
-    "category": "Design",
-    "url": "https://example.com/copygenius18",
-    "date_added": "2026-09-09"
   }
 ]
